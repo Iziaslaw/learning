@@ -1,0 +1,246 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(void){
+    float res = 6.0*((1.0/3.0)*(1./3.))-15.0*(1.0/3.0);
+    printf("%.2f", res);
+    return 0;}
+==========
+int main(void){
+    int h, w;
+    scanf("%d %d", &h, &w);
+    printf("%.2f",(float)h/(float)w);
+    return 0;}
+===========
+int main(void){
+    int count = 0;
+    scanf("%d", &count);
+    printf("%i", count+1);
+    return 0;}
+============
+int main(void){
+    int total = 0;
+    scanf("%d", &total);
+    printf("%i", total-2);
+    return 0;}
+=============
+int main(void){
+    int a1; // первый член прогрессии
+    int a50; // 50-й член прогрессии
+    scanf("%d, %d", &a1, &a50);
+    int aSn = ((a1+a50)/2.*50.);
+    printf("%d", aSn);
+    return 0;}
+============
+int main(void){
+    int b1; // первый член прогрессии
+    int q; // знаменатель прогрессии
+//double Sn = (q*q*q*q - 1) * b1 / (double)(q - 1);
+    scanf("%d, %d", &b1, &q);
+    int Sn = (q*q*q*q - 1) * b1 / (double)(q - 1);
+    printf("%i", Sn);
+    return 0;}
+============
+int main(void){
+int a;
+scanf("%d", &a);
+printf("%.3f", (1.732*a)/6.);
+return 0;}
+=============
+int main(void){
+    float r;
+    scanf("%f", &r);
+    printf("%.3f", 3.1415*2*r);
+    return 0;}
+===============
+#include <stdio.h>
+int main(void){
+    int a,b,h;
+    scanf("%i,%i,%i", &a,&b,&h);
+    printf("%.1f", (a+b)*h/2.);
+    return 0;}
+▄■▀▀■▄▄■▀▀■▄INCREMENT,DECREMENT,MODULE▄■▀▀■▄▄■▀▀■▄
+    int angle;
+    scanf("%d", &angle);    
+    printf("%d", angle % 360);
+    return 0;
+╠═══════════════
+    int rect_width = 1280, rect_height = 720;
+    int w = 8, h = 8;
+    scanf("%d; %d", &w, &h);
+    printf("%d %d",rect_width % w, rect_height % h);
+    return 0;
+╠═════════╪◄►Time addition◄►╪══════
+║    unsigned short time_h = 10; // часы
+║    unsigned short time_m = 33; // минуты
+║    unsigned short time_s = 5; // секунды
+║    unsigned short h, m, s; // добавляемое время: h - часы; m - минуты; s - секунды
+║    scanf("%hu; %hu; %hu", &h, &m, &s);    
+║    printf("%02u:%02u:%02u", ((time_h+h)*3600+(time_m+m)*60+(time_s+s))/3600, (time_m+m + (time_s+s)/60)%60,(time_s+s)%60);
+║    return 0;
+╠═══════════════════════
+    float res;
+    scanf("%f", &res);
+    printf("%.1f", --res);
+    return 0;
+╠═══════════════════════
+    int h, w;
+    scanf("%d,%d", &h, &w);
+    printf("%d", ++h*++w);
+╠═══════════════════════
+    int rect_width = 640, rect_height = 480;
+    int w = 1, h = 1;
+    scanf("%d; %d", &w, &h);
+    printf("%d", (rect_width/w)*(rect_height/h));    
+    return 0;
+╠═══════════════════════◄■►
+    int a, b, c;
+    scanf("%d %d", &a ,&b);
+    c = (a*=3)*(b-=10);
+    printf("%d", c);
+╠═══════════════════════◄■►
+    float a, b, c;
+    scanf("%f %f", &a, &b);
+    c = (a+b)*2;//Периметр прямоугольника
+    printf("Периметр: %.1f", c);
+╠════════════Скидка 15%, 2шт.═══════════◄■►
+    float s, m;
+    scanf("%f %f",&s, &m);
+    printf("%.2f", (s-s*m/100.)*2);
+░░▒▒▓▓██ BOOLEAN ██▓▓▒▒░░
+#include <stdio.h>
+#include <stdbool.h>
+int main(void){} 
+░░▒▒▓▓██═════════██▓▓▒▒░░
+    int x;
+    bool y;
+    scanf("%i", &x);
+    y = x % 5 == 0;
+    printf("%i", 100 * y);
+╠═══════════╪в диапазоне╪═══════════◄■►
+    float x;
+    bool y;
+    scanf("%f", &x);
+    y = x <= 10.37 && x >= -5.45;
+    printf("%i", y);
+╠═══════════╪кратно 5╪═══════════◄■►
+    float x;
+    bool y;
+    scanf("%f", &x);
+    y = (int)x % 5 == 0;
+    printf("%i", y);
+╠═══════════╪╪════════════◄■►
+    float x;
+    bool y;
+    scanf("%f", &x);
+    y = x>=-10 && x<0 || x>5 && x<=12;
+    printf("%i", y);
+
+╠═══════════╪внутри прямоугольника╪◄■►
+float x,y;
+bool a;
+scanf("%f %f", &x, &y);
+a = x>=-5 &&x<=10 &&y>=0 &&y<=7 ;
+printf("%i", a);
+
+╠═══════════╪снаружи прямоугольника╪◄■►
+float x,y;
+bool a;
+scanf("%f %f", &x, &y);
+a = x<-5. || x>10. || y<0. || y>7. ;
+printf("%i", a);
+╠═══════════╪╪═══════════◄■►
+int rect_width = 640, rect_height = 480;
+int w = 1, h = 1, sr;
+scanf("%d; %d", &w, &h);
+bool wb, hb, whb;
+wb = rect_width % w != 0 ;
+hb = rect_height % h != 0 ;
+whb = wb && hb;
+sr = rect_width/w*hb + rect_height/h*wb + whb;
+printf("%d", sr);
+return 0;
+░░▒▒▓▓██ IF, ELSE ██▓▓▒▒░░
+    short x, y;
+    if(scanf("%hd, %hd", &x, &y) != 2) {
+        printf("Input error.");
+        return 0;
+    }
+    if(x<=y) printf("%hd", x);
+    else printf("%hd", y);
+    return 0;
+░░▒▒▓▓██Ternary conditional operator██▓▓▒▒░░
+░▒▒▓▓███--<exp1> ? <exp2> : <exp3>--███▓▓▒▒░
+╠═══════════╪╪═══════════◄■►
+int k, m;
+scanf("%d %d", &k, &m);
+printf("%d", k<m?(m+8):(k+8));
+return 0;
+╠═══════════╪╪═══════════◄■►
+(type==1) ? printf("%.1f", w*h) : (type==2) ? printf("%.1f", 2*(w+h)) : printf("%d", -1);
+░░▒▒▓▓██ SWITCH ██▓▓▒▒░░
+    char menu_item;
+    short menu_number = 0;
+
+    switch(menu_item) {
+    case 'a':
+    case 'A':
+        menu_number = 1;
+        break;
+    case 'b':
+    case 'B':
+        menu_number = 2;
+        break;
+    case 'c':
+    case 'C':
+        menu_number = 3;
+        break;
+    case 'd':
+    case 'D':
+        menu_number = 4;
+        break;
+    default:
+        menu_number = -1;
+    }
+    printf("%i", menu_number);
+╠═══════════╪╪═══════════◄■►
+switch(menu_item) {
+    case 'a':
+    case 'A':
+        return 1;
+    case 'b':
+    case 'B':
+        return 2;
+    case 'c':
+    case 'C':
+        return 3;
+    case 'd':
+    case 'D':
+        return 4;
+    }
+░░▒▒▓▓██И, ИЛИ, НЕ, исключающее ИЛИ (XOR)██▓▓▒▒░░
+unsigned char bits;//проверка на включенные биты
+scanf("%hhu", &bits);
+printf("%d", (bits & 0b00101000) == 40 ? bits : -1); 
+╠═══════════╪╪═══════════◄■►
+    unsigned char bits, res;
+    scanf("%hhu", &bits);
+    res = (bits & 0b00111111);//отключение 7,6 бита
+res = (bits | 0b00010101);//включение 4,2,0 бита
+res = (bits ^ 0b00001001);//переключение 3,0 бита
+res = res>>2;//деление на 4
+res = res<<3;//умножение на 8
+
+    printf("%d", res);
+╠═══════════╪╪═══════════◄■►
+int a, b;
+scanf("%d %d", &a, &b);
+printf("%d", (a>>1)*(b>>1));//деление на 2 и перемнож
+╠═══════════╪╪═══════════◄■►
+unsigned char flags, mask;
+scanf("%hhu %hhu", &flags, &mask);
+printf(((flags&mask)==mask)?"yes":"no");//проверка включенных бит
+printf(((flags&mask)!=0)?"yes":"no");//проверка на хотя бы один включенный бит
+╠═══════════╪╪═══════════◄■►

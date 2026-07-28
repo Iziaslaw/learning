@@ -1,0 +1,594 @@
+//Массивы
+int[] arr = new int[5];
+arr[2] = 42;
+
+System.out.println(arr[2]);    // 42
+System.out.println(arr[3]);    // 0
+//
+String[] names = {"A", "B", "C", "D"};
+System.out.println(names[2]); // C
+
+String names[] = {"A", "B", "C", "D"};
+//
+int[] newArray = new int[5];
+System.out.println(newArray.length);// 5
+//
+int[] numbers = new int[11];
+
+for (int i = 10; i <= 20; i++) {
+    numbers[i - 10] = i;
+}
+//
+int[] myArr = {6, 42, 3, 7, 16, 10, 22};
+int summ = 0;
+for(int x = 0; x < myArr.length; x++) {
+summ += myArr[x];
+}
+System.out.println(summ);
+
+// 106
+String[] beatles = {"John", "Paul", "Ringo", "George"};
+
+for (String person: beatles) {
+    System.out.println(person);
+} //John
+  //Paul
+  //Ringo
+  //George
+//На вход подаётся целое число n > 1. Сформируйте массив чётных чисел от 2 до n (включительно).
+//Выведите на печать массив в одной строке, через пробел.
+//Посчитайте и выведите на печать сумму элементов массива.
+import java.util.Scanner;
+class MyNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numbers = new int[scanner.nextInt() / 2], sc.close();
+        int numbersSum = 0;
+        for (int i = 0, k = 2; i < numbers.length; i++, numbersSum += k, k += 2) 
+            numbers[i] = k;
+        for (int i = 0; i < numbers.length; i++) 
+            System.out.print(i == numbers.length - 1 ? numbers[i] : numbers[i] + " ");
+         System.out.print("\n" + numbersSum);
+        scanner.close();
+    }
+}
+//
+String dataLine = {"158;190;178;186;174"};
+String[] dataHeight = dataLine.split(";");
+
+for (String el: dataHeight) {
+    System.out.println(el);
+}
+//Arrays.toString()
+int[] array = {1, 2, 3, 4, 5}; 
+System.out.println(Arrays.toString(array));       // [1, 2, 3, 4, 5]
+//Arrays.sort()
+int[] array = {5, 10, 15, 4, 1, 7, 23, 8, 11, 42};
+Arrays.sort(array, 3, 7);
+System.out.println(Arrays.toString(array));    // [5, 10, 15, 1, 4, 7, 23, 8, 11, 42]
+//Arrays.equals() true false
+int[] numbers1 = {1, 2, 3};
+int[] numbers2 = {1, 2, 3};
+System.out.println(Arrays.equals(numbers1, numbers2));    // true
+//Arrays.copyOf Массив и число элементов
+int[] numbers1 = {1, 2, 3, 4, 5};
+int[] numbers2 = Arrays.copyOf(numbers1, 5);
+
+System.out.println(Arrays.toString(numbers2));    // [1, 2, 3, 4, 5]
+
+import java.util.*;
+class Example {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] lst = new int[n];
+        for(int i = 0;i<n;i++){
+            lst[i]=sc.nextInt();
+        }
+        
+        int k = sc.nextInt();
+        //System.out.print(str);
+        //int[] lst = str.split(" ");
+        Arrays.sort(lst);
+        if(k<=n&&k>=0) System.out.print(lst[k-1]);
+        else System.out.print("Ошибка ввода");
+    }
+}
+
+import java.util.*;
+class Example {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        //System.out.print(str);
+        String[] lst = str.split(" ");
+        int[] lst2 = new int[lst.length];
+        for(int i =0;i<lst.length;i++){
+            lst2[i] = Integer.parseInt(lst[i]);
+        }
+        Arrays.sort(lst2); 
+        System.out.print(Arrays.toString(lst2));
+    }
+}
+// 
+String[] numbers = {"one", "two", "three", "four", "five", "forty two"};
+
+for (int i=0; i < numbers.length; i++) {
+    if (numbers[i].charAt(0) == 'f') {
+        numbers[i] = "deleted";
+    }
+} 
+
+System.out.println(numbers[3]);    // deleted
+//enhanced loop
+String[] numbers1 = {"one", "two", "three", "four", "five", "forty two"};
+
+for (String s: numbers1) {
+    if (s.charAt(0) == 'f') {
+        s = "deleted";
+    }
+}
+
+System.out.println(numbers1[3]);    // four 
+//
+int[] arr = {1,2,3,4,5};
+int total = 0;
+for (int i : arr) { total += i; }
+//На ввод подаётся последовательность целых чисел. Поменяйте местами соседние элементы последовательности (второй с третьим, четвёртый с пятым и т.д.), кроме первого и последнего. Если находится "одинокий" элемент, который не с чем поменять - необходимо оставить его на месте.
+import java.util.*;
+class MySolution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] arr = sc.nextLine().split(" ");
+        String temp;
+        for (int i = 1; i < arr.length - 2; i += 2) {
+            temp = arr[i]; arr[i] = arr[i + 1]; arr[i + 1] = temp;
+        }
+        for (String el: arr) System.out.print(el + " ");
+    }
+}
+//На вход подаётся строка текста. Определите, в каком по счёту слове этого предложения меньше всего букв, и выведите на печать. Если таких слов несколько, выведите номер первого по порядку.
+import java.util.*;
+class MySolution {
+    public static void main(String[] args) {
+        String[] s = new Scanner(System.in).nextLine().split(" ");
+        int iMin = 0;       
+        for(int i = 1; i < s.length; i++)
+            if(s[iMin].length() > s[i].length()) iMin = i;
+        System.out.print(iMin+1);
+    }
+}
+//
+import java.util.*;
+class MySolution {
+    public static void main(String[] args) {
+        String[] s = new Scanner(System.in).nextLine().split(" ");
+        int[] lst = new int[s.length];
+        for(int i=0;i<s.length;i++)lst[i]=Integer.parseInt(s[i]);               
+        if(lst.length>2){
+            int iMin = lst[0]+lst[2];
+            for(int i = 1; i < s.length-2; i++){
+                int x = lst[i]+lst[i+2];
+                if(x<iMin) iMin = x;
+            }
+            System.out.print(iMin);
+        }else{
+            System.out.print(0);
+        }        
+    }
+}
+//
+import java.util.*;
+class MySolution {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt(), m = input.nextInt();
+        input.close();
+        int[][] arr = new int[n][m];
+        for(int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                arr[i][j] = (i+1)*(j+1);
+                System.out.print(arr[i][j] + (j < m-1 ? " " : "\n"));
+            }
+        }
+	}
+}     
+//На ввод подаются несколько строк текста. Вначале подаётся число n - количество строк, а затем сами строки. Знаки препинания удалены. Образуйте многомерный массив слов из этих строк и выведите его на печать.
+import java.util.*;
+
+class MySolution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = Integer.parseInt(sc.nextLine());
+        String[][] array = new String[x][];
+        for (int i = 0; i < x; i++) array[i] = sc.nextLine().split(" ");       
+        for (String[] line : array) System.out.println(Arrays.toString(line));        
+    }
+}
+//На вход подаётся матрица (двумерный массив). Все элементы матрицы - целые числа. Найдите её размеры и выведите на печать в соответсвии с примером.
+import java.util.*;
+class MyProgram {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int i = 1, j = sc.nextLine().split(" ").length;
+        while (sc.hasNextLine()) {
+            sc.nextLine();
+            i++;            
+        }
+        System.out.print("Строк: " + i + "\nСтолбцов: " + j);
+    }
+}
+//На вход подаётся матрица (двумерный массив). Все элементы матрицы - целые числа. Найдите её размеры и выведите на печать в соответсвии с примером.
+import java.util.*;
+class MyProgram {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int i = 1, j = sc.nextLine().split(" ").length;
+        while (sc.hasNextLine()) {
+            sc.nextLine();
+            i++;            
+        }
+        System.out.print("Строк: " + i + "\nСтолбцов: " + j);
+    }
+}
+//На вход подаётся матрица (двумерный массив). Все элементы матрицы - целые числа. Напечатайте главную диагональ матрицы в одной строке, через пробел.
+import java.util.Scanner;
+
+class MySolution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = 0;
+        while(sc.hasNext()){
+            String[] y = sc.nextLine().split(" ");
+            System.out.print(y[x]+" ");
+            if(x<y.length-1)x++;
+            else break;
+        }
+    }
+}
+//На вход подаётся матрица (двумерный массив). Все элементы матрицы - целые числа.Поверните матрице на 90 градусов по часовой стрелке.
+import java.util.Scanner;
+
+class MySolution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = 0, y = 0;
+        String str = "";
+        while(sc.hasNext()){
+            str += sc.nextLine()+":";
+        }
+        String[] strArr1 = str.split(":");
+        String[][] strArr2 = new String[strArr1.length][];
+        for(int i = 0;i<strArr1.length;i++){
+            strArr2[i] = strArr1[i].split(" ");
+        }
+        int xs2 = strArr2[0].length, ys2 = strArr2.length;
+        String[][] strArr3 = new String[xs2][ys2];
+        for(int i=ys2-1, k=0;i>=0;i--,k++){
+            for(int j=0;j<xs2;j++){
+                strArr3[j][k] = strArr2[i][j];
+            }
+        }
+        for(int i = 0;i<strArr3.length;i++){
+            for(int j = 0;j<strArr3[0].length;j++){
+                if(j==strArr3[0].length-1) System.out.print(strArr3[i][j]+"\n");
+                else System.out.print(strArr3[i][j]+" ");
+            }
+        }        
+        //System.out.print(strArr1.length);
+    }
+}
+//Кэширование cashing
+static HashMap<Integer,BigInteger> cache = new HashMap<Integer,BigInteger>(); 
+cache.put(n, ret); 
+cache.get(n);
+//Управление роботом
+import java.math.*;
+import java.util.Arrays;
+ 
+public class module2 {
+    public static void main(String[] args) {
+        Robot robot = new Robot(0,0, Direction.DOWN);
+        moveRobot(robot, -10, 20);
+    }
+ 
+    public enum Direction {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
+ 
+    public static class Robot {
+        int x;
+        int y;
+        Direction dir;
+ 
+        public Robot (int x, int y, Direction dir) {
+            this.x = x;
+            this.y = y;
+            this.dir = dir;
+        }
+ 
+        public Direction getDirection() {return dir;}
+ 
+        public int getX() {return x;}
+ 
+        public int getY() {return y;}
+ 
+        public void turnLeft() {
+            if      (dir == Direction.UP)    {dir = Direction.LEFT;}
+            else if (dir == Direction.DOWN)  {dir = Direction.RIGHT;}
+            else if (dir == Direction.LEFT)  {dir = Direction.DOWN;}
+            else if (dir == Direction.RIGHT) {dir = Direction.UP;}
+        }
+ 
+        public void turnRight() {
+            if      (dir == Direction.UP)    {dir = Direction.RIGHT;}
+            else if (dir == Direction.DOWN)  {dir = Direction.LEFT;}
+            else if (dir == Direction.LEFT)  {dir = Direction.UP;}
+            else if (dir == Direction.RIGHT) {dir = Direction.DOWN;}
+        }
+ 
+        public void stepForward() {
+            if (dir == Direction.UP)    {y++;}
+            if (dir == Direction.DOWN)  {y--;}
+            if (dir == Direction.LEFT)  {x--;}
+            if (dir == Direction.RIGHT) {x++;}
+        }
+    }
+ 
+    public static void moveRobot(Robot robot, int toX, int toY) {
+        while(robot.getX()!=toX){
+			while(robot.getX()<toX && robot.getDirection()!=Direction.RIGHT) robot.turnRight();
+			while(robot.getX()>toX && robot.getDirection()!=Direction.LEFT) robot.turnLeft();
+			while(robot.getX()<toX && robot.getDirection()==Direction.RIGHT) robot.stepForward();
+			while(robot.getX()>toX && robot.getDirection()==Direction.LEFT) robot.stepForward();
+    }
+		while(robot.getY()!=toY){    
+			while(robot.getY()<toY && robot.getDirection()!=Direction.UP) robot.turnRight();
+			while(robot.getY()>toY && robot.getDirection()!=Direction.DOWN) robot.turnLeft();      
+			while(robot.getY()<toY && robot.getDirection()==Direction.UP) robot.stepForward();
+			while(robot.getY()>toY && robot.getDirection()==Direction.DOWN) robot.stepForward();
+    }
+    }
+}
+/*Write a lambda expression that accepts two integer arguments and returns the minimum of them and then assign the lambda expression to the function variable. Don't forget to add the ; character on the end.*/
+import java.util.function.BiFunction;
+
+class Operator {
+
+    // assign a lambda expression to this variable
+    static BiFunction<Integer, Integer, Integer> function = (i,j)-> {
+        return i<j ? i : j;
+    };
+}
+//Дан класс ComplexNumber. Переопределите в нем методы equals() и hashCode() так, чтобы equals() сравнивал экземпляры ComplexNumber по содержимому полей re и im, а hashCode() был бы согласованным с реализацией equals().Реализация hashCode(), возвращающая константу или не учитывающая дробную часть re и im, засчитана не будет
+public final class ComplexNumber {
+    private final double re;
+    private final double im;
+
+    public ComplexNumber(double re, double im) {
+        this.re = re;
+        this.im = im;
+    }
+
+    public double getRe() {
+        return re;
+    }
+
+    public double getIm() {
+        return im;
+    }
+    @Override
+        public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ComplexNumber that = (ComplexNumber) o;
+        return Double.compare(that.re, re) == 0 &&
+                Double.compare(that.im, im) == 0;
+    }
+
+    @Override
+        public int hashCode() {
+        return java.util.Objects.hash(re, im);
+    }
+    
+}
+//
+class MyProgram{    
+    public static void main(String[] args){
+        System.out.println("Hello, Java!");    
+    }
+}
+//
+public class AsciiCharSequence implements CharSequence {
+    private byte[] data;
+
+    public AsciiCharSequence(byte[] data) {
+        this.data = data;
+    }
+
+    @Override
+    public int length() {
+        return data.length;
+    }
+
+    @Override
+    public char charAt(int index) {
+        return (char) (data[index] & 0xff);
+    }
+
+    @Override
+    public CharSequence subSequence(int start, int end) {
+        int length = end - start;
+        byte[] bytes = new byte[length];
+        for (int i = 0, j = start; i < length; i++, j++) {
+            bytes[i] = data[j];
+        }
+        return new AsciiCharSequence(bytes);
+    }
+
+    @Override
+    public String toString() {
+        return new String(data);
+    }
+}
+//
+public class Main {
+  public static void main(String[] args) { // main в ответ не печатаем, только для теста
+   
+    String[] spamKeywords = {"bad","spam"}; // Слова, относящиеся к спаму
+    int commentMaxLength = 40; // Максимальная длина строки
+    String s = "This spam"; // Тестируемая строка
+       
+    TextAnalyzer[] textAnalyzers = { // Массив, подаваемый на вход checkLabels()
+            new SpamAnalyzer(spamKeywords),
+            new NegativeTextAnalyzer(),
+            new TooLongTextAnalyzer(commentMaxLength)
+        };
+   
+    System.out.println(checkLabels(textAnalyzers, s)); // На выходе SPAM, так как String s содержит ключевое слово "spam" из spamKeywords
+  };
+
+  public static Label checkLabels(TextAnalyzer[] analyzers, String text) { // Для удобства тестирования checkLabels() делаем временно static
+    // Здесь перебираем массив analyzers и подставляем processText(text) //
+    return Label.OK;
+  };
+ 
+}
+
+interface TextAnalyzer {
+    Label processText(String text);
+};
+
+enum Label {
+    SPAM, NEGATIVE_TEXT, TOO_LONG, OK
+};
+
+abstract class KeywordAnalyzer implements TextAnalyzer {
+  // Здесь реализуем processText(), не забываем public
+  // Абстрактный защищенный метод String[] getKeywords();
+  // Абстрактный защищенный метод Label getLabel();
+};
+
+class SpamAnalyzer extends KeywordAnalyzer {
+  private String[] Keywords;// Приватный строчный массив keywords, заполняемый конструктором
+ 
+  // модификатор // String[] getKeywords(){
+    // возвращает keywords;
+  }
+ 
+  // модификатор // Label getLabel(){
+    // возвращает SPAM из Label;
+  }
+ 
+  // модификатор // Label processText(String text){
+    // возвращает processText(text)
+  }
+ 
+  // Конструктор SpamAnalyzer
+
+};
+
+class NegativeTextAnalyzer extends KeywordAnalyzer {
+  private String[] keywords = {":(", "=(", ":|"};
+ 
+  // getKeywords() и getLabel() реализуем по примеру SpamAnalyzer
+};
+
+class TooLongTextAnalyzer implements TextAnalyzer {
+  // Приватный int maxLength, заполняемый конструктором
+ 
+  // Конструктор TooLongTextAnalyzer
+ 
+  // Реализуем processText(){
+    // Если длина текста больше maxLength возвращает TOO_LONG из Label, если меньше OK
+  }
+};
+// 12.07  11.68
+abstract class KeywordAnalyzer implements TextAnalyzer {
+
+
+  abstract protected String[] getKeywords();
+
+  abstract protected Label getLabel();
+
+  @Override
+  public Label processText(String text) {
+    for (String keyword : getKeywords()) {
+      if (text.contains(keyword))
+        return getLabel();
+    }
+    return Label.OK;
+  }
+}
+
+class SpamAnalyzer extends KeywordAnalyzer {
+  private String[] keywords;
+  private Label label;
+  public SpamAnalyzer(String[] keywords) {
+    this.keywords = keywords.clone();
+    label = Label.SPAM;
+  }
+
+  @Override
+  protected String[] getKeywords() {
+    return keywords;
+  }
+
+  @Override
+  protected Label getLabel() {
+    return label;
+  }
+}
+
+class NegativeTextAnalyzer extends KeywordAnalyzer {
+  private String[] keywords;
+  private Label label;
+  public NegativeTextAnalyzer() {
+    this.keywords = new String[3];
+    this.keywords[0] = ":(";
+    this.keywords[1] = "=(";
+    this.keywords[2] = ":|";
+    label = Label.NEGATIVE_TEXT;
+  }
+
+  @Override
+  protected String[] getKeywords() {
+    return keywords;
+  }
+
+  @Override
+  protected Label getLabel() {
+    return label;
+  }
+
+}
+
+class TooLongTextAnalyzer implements TextAnalyzer {
+  private int maxLength;
+
+  public TooLongTextAnalyzer(int maxLength) {
+    this.maxLength = maxLength;
+  }
+
+  @Override
+  public Label processText(String text) {
+    if (text.length() > maxLength)
+      return Label.TOO_LONG;
+    return Label.OK;
+  }
+
+}
+
+public Label checkLabels(TextAnalyzer[] analyzers, String text) {
+   for(TextAnalyzer analyzer: analyzers) {
+        if(analyzer.processText(text) != Label.OK) return analyzer.processText(text);
+   }
+    return Label.OK;
+}

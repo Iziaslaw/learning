@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML изучение</title>
+	<style> 
+		#button-go-to-top {
+ 		text-decoration: underline; /* подчёркивание текста */
+		}
+		em {color:red;}
+		* {font-family: "Courier New";}
+	</style>
+</head>
+<body>
+    <h1>456<q>123</q>789</h1>
+    <p>Здесь вы узнаете больше о разметке и гипертексте.</p>
+	<details><summary>Тэги</summary>
+	<p>&lt;br&gt;Перенос строки<br>&lt;hr&gt;горизонтальная линия-разделитель<hr></p></em>
+    &lt;article&gt;<br>&lt;strong&gt;<strong>Text</strong>&lt;/strong&gt;<br>
+	&lt;em&gt;<em>Text</em>&lt;/em&gt;<br>
+	&lt;i&gt;<i>Text</i>&lt;/i&gt;
+	&lt;b&gt;<b>Text</b>&lt;/b&gt;<br>
+	&lt;u&gt;<u>Text</u>&lt;/u&gt;
+	&lt;s&gt;<s>Text</s>&lt;/s&gt;<br>
+	&lt;sup&gt;<sup>Text</sup>&lt;/sup&gt;&lt;sub&gt;<sub>Text</sub>&lt;/sub&gt;<br>
+	&lt;small&gt;<small>Text</small>&lt;/small&gt;
+	&lt;big&gt;<big>Text</big>&lt;/big&gt;<br>&lt;/article&gt;<br>
+	&lt;a&gt;<a href="https://example.com">Перейти на пример сайта</a>&lt;/a&gt;<br>
+	&lt;a href="https://example.com" target="_blank"&gt;<a href="https://example.com">Перейти на пример сайта</a>&lt;/a&gt;<br>
+	&lt;button disabled&gt;<button>Text</button>&lt;/button&gt;<br>
+	<button>Text</button><br>
+	
+	</details>	
+	<details><summary>Списки</summary>
+	<p>Маркированный список - ul(unordered), <br> нумерованный список - ol(ordered list)</p>
+	&lt;dl&gt; <i>(description list) - тег начала и конца списка</i>
+	&lt;dt&gt; <i>(term) - термин</i>
+	&lt;dd&gt; <i>(description) - определение</i>   <br>
+	&lt;ul&gt;<ul>
+ 		&lt;li&gt;&lt;/li&gt;<li>Картошка</li>
+ 		&lt;li&gt;&lt;/li&gt;<li>Морковка</li>
+ 		&lt;li&gt;&lt;/li&gt;<li>Свекла</li>
+	</ul>&lt;/ul&gt;
+	<dl>
+ 		<dt>Гаспачо</dt><dd>лёгкий холодный суп из перетёртых в пюре свежих овощей</dd>
+ 		<dt>Том-ям</dt><dd>кисло-острый суп на основе куриного бульона с креветками, курицей, рыбой или другими морепродуктами</dd>
+ 		<dt>Борщ</dt><dd>разновидность супа на основе свёклы, которая придаёт борщу характерный красный цвет</dd>
+	</dl>
+	</details>
+	<details><summary>Картинки</summary>
+
+	&lt;img src="" title="" alt="" width="" height=""&gt;<img 
+		src="image00.jpeg" 
+		title="Мурка"
+		alt="Рыжая кошка валяется в снегу"
+		width="100"
+		height="100">   <br>
+	<figure>
+		<img src="sber2015.jpeg" width="200" height="100">
+		<figcaption>Лого Сбера от ﻿2015 года	</figcaption>
+		<img src="cheetsheet_HTML.jpg" >
+    </details>
+	<details><summary>Ссылки</summary>
+		&lt;<i>h1 id="anchor"</i>&gt;Якорь&lt;/h1&gt;<h1 id="anchor">Якорь</h1>
+		&lt;a href="#anchor"&gt;Перейти к якорю&lt;/a&gt;<a href="#anchor">Перейти к якорю</a>
+
+	</details>
+﻿</figure>
+	<details><summary>Таблицы</summary>
+		<table border="1">
+	  <tr>
+		<th>Имя</th>
+		<th>Возраст</th> 
+		<th>Суперспособность</th>
+	  </tr>
+	  <tr>
+		<td>Логан</td>
+		<td>186</td> 
+		<td>Повышенная способность к регенерации</td>
+	  </tr>
+	  <tr>
+		<td>Профессор икс</td>
+	      <td>94</td>
+		<td>Чтение мыслей, вызов иллюзий, временного паралича, способность останавливать время</td> 
+	  </tr>
+	</table>
+	<table border="1">
+		<tr>
+			<td>Первая ячейка</td>
+			<td>Вторая ячейка</td>
+			<td>Третья ячейка</td>
+		</tr>
+		<tr>
+			<td colspan="3">Единственная ячейка</td>
+		</tr>
+	</table></details>
+	<details><summary>Формы</summary>
+		<input type="text"><br>
+		<input type="password"><br>
+		<input type="checkbox"><br>
+		<input type="radio" name="sex" value="male" checked>Мужской<br>
+		<input type="radio" name="sex" value="female" checked>Женский<br>
+		<input type="radio" name="sex" value="other" checked>Другое<br>
+		<input type="file"><br>
+		<input type="reset"><br>
+		<input type="submit"><br>
+		<input type="email"><br>
+		<input type="tel"><br>
+		<input type="url"><br>
+		<input type="number" min="2" max="8" step="2" value="6"><br>
+		<input type="range"><br>
+		<input type="search">
+		<select name="pets" id="pet-select">
+  <option value="">--Please choose an option--</option>
+  <option value="dog">Dog</option>
+  <option value="cat">Cat</option>
+  <option value="hamster">Hamster</option>
+  <option value="parrot">Parrot</option>
+  <option value="spider">Spider</option>
+  <option value="goldfish">Goldfish</option>
+</select>
+</details>
+		<details><summary>CSS</summary>
+		&lt;link rel="stylesheet" href="style.css"&gt;<br>
+		&lt;style&gt;<br>
+			.example {<br>
+  			background: #ebac0c;<br>
+ 			}<br>
+		&lt;/style&gt;<br>
+		&lt;div style="border: 1px solid #000; margin-top: 16px;"&gt;<div style="border: 1px solid #A00; margin-top: 26px;">Див со стилем</div><br>
+		<code>p {<br>
+			color: red;<br>
+			text-decoration: underline;<br>
+			}</code>
+<pre><div class="card">
+ Карточка
+</div>
+ .card {
+  </em>/* стили для всех элементов с class="card" */</em>
+  background: #333; /* фон серого цвета */
+ }
+<button id="button-go-to-top">
+ Наверх
+</button>
+ #button-go-to-top {
+   <em>/* стили для элемента с id="button-go-to-top" */</em>
+   text-decoration: underline; /* подчёркивание текста */
+ }
+ * {
+  margin: 0;
+ }
+
+<em>/* абсолютно всем элементам будет установлен margin: 0 */</em></pre>
+<pre>
+ .page p {<em>/*вложенность на всех уровнях*/</em>
+  text-decoration: underline;
+ }
+ .page > p {<em>/*вложенность на первом уровне*/</em>
+  text-decoration: underline;
+ }
+ img + p {<em>/*который находится сразу после другого элемента*/</em>
+  margin-top: 0;
+  font-style: italic;
+}
+ img ~ p {<em>/*который находится после другого элемента*/</em>
+  margin-top: 0;
+  font-style: italic;
+}</pre>
+<pre>p {<em>/*fonts and fallback fonts*/</em>
+   font-family: 'Roboto', 'Helvetica Nue', sans-serif;
+}
+
+</pre>
+<pre>
+.example {
+   <em>/* цвет фона «продающий красный», задан в HEX-формате */</em>
+   background: #e64c0c;
+}
+
+.example {
+   <em>/* картинка на фоне */</em>
+   background: url('images/nude-president.png'); 
+
+   <em>/* background-size отвечает за размер картинки, cover - картинка растягивается на весь блок, сохраняя пропорции */</em>
+   background-size: cover;
+}
+</pre>
+<pre><b>Colors</b>
+ #3ae6сa
+ rbg(255, 123, 13)
+ rgba(144, 32, 16, 0.5)
+ hsl(120, 100%, 50%)
+</pre>
+<pre><i>
+display: none; - элемент перестаёт отображаться на странице.
+
+display: block; - блочный элемент. Ему можно задать ширину, высоту, границы, отступы.
+
+display: inline; - строчный элемент. Задание ширины и высоты не влияет на inline элементы. Задание границ и отступов будет изменять положение окружающего текста, но не будет влиять на положение окружающих блочных элементов.
+
+display: inline-block; - что-то среднее между блочным и строчным элементом. Ему можно задать ширину, высоту, границы и отступы, но он не будет создавать перенос строки до и после себя, в отличие от блочных элементов. С помощью этого типа можно распологать блоки горизонтально в ряд.
+
+Блокам можно задать:
+
+    ширину (width) и высоту (height)
+    отступы: внутренние (padding) и внешние (margin)
+    границы (border)
+
+overflow: visible; - отображается все содержание блока, даже за пределами установленной высоты и ширины.
+overflow: hidden; - отображается только область внутри блока, остальное будет скрыто.
+overflow: scroll; - всегда добавляются полосы прокрутки, даже если контент помещается.
+overflow: auto; - полосы прокрутки добавляются только при необходимости.
+
+Свойство float может иметь следующие значения:
+    left - выравнивание по левой стороне, обтекание справа,
+    right  - выравнивание по правой стороне, обтекание слева,
+    none - выравнивание не задаётся (нужно, чтобы сбросить ранее заданное значение).
+
+</i></pre>
+
+</body>
+</html>

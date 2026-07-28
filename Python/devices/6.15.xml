@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<device name="IKTS11" caption="ИКТС-11" id="6" build="15">
+    <ram>
+        <item name="deviceID" type="unsigned int" caption="Идентификатор контроллера = 6"/>
+        <item name="deviceBuild" type="unsigned int" caption="Версия прошивки контроллера = 15"/>
+        <item name="deviceRev" type="unsigned int" caption="Версия ревизии прошивки контроллера"/>
+
+        <item name="AccessEE" caption="Доступ на запись в EEPROM" type="unsigned char">
+            <mode value="54" caption="Доступ на запись в EEPROM открыт"/>
+        </item>
+
+        <item name="workTime" caption="Время работы после включения/перзапуска, сек" type="unsigned long"/>
+        <item name="RealDensity_him_sens[2]" caption="Концентрация газов, измеряемая в реальном времени (ppm, %)" type="float"/>
+        <item name="CO" caption="Фиксированная концентрация CO, ppm" type="float"/>
+        <item name="NO" caption="Фиксированная концентрация NO, ppm" type="float"/>
+        <item name="O2" caption="Концентрация O2 от LSU4, %об" type="float"/>
+        <item name="Density_calckNOx" caption="Вычисленная концентрация NOx, ppm" type="float"/>
+        <item name="Density_calckCO2" caption="Вычисленная концентрация CO2, ppm" type="float"/>
+        <item name="AerAlfa" caption="Вычисленный коэффициент избытка воздуха" type="float"/>
+        <item name="PerformMax" caption="Вычисленный максимальный КПД котла, %" type="float"/>
+        <item name="PerformMin" caption="Вычисленный минимальный КПД котла, %" type="float"/>
+        <item name="Param_from_Tok0" caption="Результат измерения по токовому входу 0 в единицах измеряемого параметра" type="float"/>
+        <item name="Param_from_Tok1" caption="Результат измерения по токовому входу 1 в единицах измеряемого параметра" type="float"/>
+        <item name="Iheat" caption="Измеренный ток нагревателя, А" type="float"/>
+        <item name="Uheat" caption="Измеренное напряжение нагревателя, В" type="float"/>
+        <item name="Limited_Tok[3]" caption="Ограниченный выходной ток измерительного канала N, мА" type="float"/>
+        <item name="Necessary_Tok[3]" caption="Вычисленный выходной ток измерительного канала N, мА" type="float"/>
+        <item name="Result_Tok0" caption="Результат канала входного тока 0 (мА)" type="float"/>
+        <item name="Result_Tok1" caption="Результат канала входного тока 0 (мА)" type="float"/>
+        <item name="Result_Iheat" caption="Ток нагревателя датчика BoshO2 (А)" type="float"/>
+        <item name="Result_Uheat" caption="Напряжение нагревателя датчика BoshO2 (В)" type="float"/>
+        <item name="Result_BoshO2" caption="Не используется" type="float"/>
+        <item name="Result_SensG0" caption="Не используется" type="float"/>
+        <item name="Result_SensG1" caption="Не используется" type="float"/>
+
+        <item name="ExtCmd" caption="Внешняя команда управления" type="unsigned char">
+            <mode value="1" caption="Включение фиксации О2"/>
+            <mode value="2" caption="Выключение фиксации О2"/>
+            <mode value="85" caption="Перезапуск контроллера"/>
+        </item>
+
+        <item name="DataCount" caption="Счетчик, растущий на единицу по окончании прокачки газа с измерениями" type="unsigned char"/>
+
+        <item name="Regim_him_sens" caption="Режим работы химических сенсоров" type="unsigned char">
+            <mode value="0"  caption="Рабочий цикл"/>
+            <mode value="1"  caption="Переход к прокачке воздуха"/>
+            <mode value="2"  caption="Прокачка воздуха"/>
+            <mode value="3"  caption="Прокачка газа предварительная"/>
+            <mode value="4"  caption="Прокачка газа с измерением"/>
+            <mode value="10" caption="Калибровка. Стоп"/>
+            <mode value="11" caption="Калибровка. Прокачка воздуха"/>
+            <mode value="12" caption="Калибровка. Прокачка газа"/>
+            <mode value="20" caption="Управление через EDP. Глобальный стоп"/>
+            <mode value="21" caption="Управление через EDP. Прокачка воздуха"/>
+            <mode value="22" caption="Управление через EDP. Прокачка газа"/>
+            <mode value="23" caption="Управление через EDP. Команда выполнена, ожидание следующей"/>
+        </item>
+
+        <item name="TimerRegim_him_sens" caption="Оставшееся время выполнения текущей операции (сек)" type="unsigned long"/>
+        <item name="TimerPeriodAer_him_sens" caption="Счетчик времени до прокачки воздуха (сек)" type="unsigned long"/>
+        <item name="TimerPeriodGas_him_sens" caption="Счетчик времени до прокачки газа (сек)" type="unsigned long"/>
+
+        <item name="EVENT" type="unsigned char">
+            <mask value="0x01" caption="Включен насос газа 0"/>
+            <mask value="0x02" caption="Включен насос воздуха"/>
+            <mask value="0x04" caption="Запрет измерения газа"/>
+            <mask value="0x08" caption="Разрешение записи в сенсор одним пакетом без пароля"/>
+            <mask value="0x10" caption="Запрет контроля окружения"/>
+            <mask value="0x20" caption="Тестовый режим (Запрет АЦП сенсоров)"/>
+            <mask value="0x40" caption="Аспирация. Фиксация О2"/>
+        </item>
+
+        <item name="CountGasDensityMax" caption="Счетчик аварийных прокачек воздуха" type="unsigned char"/>
+        <item name="ColChGas" caption="Количество подключенных газовых сенсоров" type="unsigned char"/>
+
+        <item name="ChGasMask" caption="Маска подключенных газовых сенсоров" type="unsigned char">
+            <mask value="0x01" caption="Канал 0"/>
+            <mask value="0x02" caption="Канал 1"/>
+        </item>
+
+        <item name="ChCO" caption="Номер канала, куда подключен сенсор CO" type="signed char"/>
+        <item name="ChNO" caption="Номер канала, куда подключен сенсор NO" type="signed char"/>
+        <item name="AerSignal[2]" caption="Сигналы сенсоров при прокачке воздуха, В" type="float"/>
+        <item name="Clb_O2_1" caption="Калибровочный коэффициент сенсора О2" type="float"/>
+        <item name="Clb_O2_2" caption="Калибровочный коэффициент сенсора О2" type="float"/>
+
+        <item name="MonitoredParamMask" type="unsigned long">
+            <mask value="0x00000001" caption="Кортроль/индикация CO"/>
+            <mask value="0x00000002" caption="Кортроль/индикация NO"/>
+            <mask value="0x00000004" caption="Кортроль/индикация O2"/>
+            <mask value="0x00000008" caption="Вычисление/индикация NOx"/>
+            <mask value="0x00000010" caption="Вычисление/индикация CO2"/>
+            <mask value="0x00000020" caption="Вычисление/индикация Alfa"/>
+            <mask value="0x00000040" caption="Вычисление/индикация КПД макс"/>
+            <mask value="0x00000080" caption="Вычисление/индикация КПД мин"/>
+            <mask value="0x00000100" caption="Кортроль/индикация температуры газа 0"/>
+            <mask value="0x00000200" caption="Кортроль/индикация температуры газа 1"/>
+            <mask value="0x00000400" caption="Кортроль/индикация тока канала 0"/>
+            <mask value="0x00000800" caption="Кортроль/индикация тока канала 1"/>
+            <mask value="0x00001000" caption="Кортроль/индикация температуры воздуха"/>
+            <mask value="0x00002000" caption="Кортроль/индикация давление воздуха"/>
+            <mask value="0x00004000" caption="Кортроль/индикация тока нагревателя"/>
+            <mask value="0x00008000" caption="Кортроль/индикация напряжения нагревателя"/>
+        </item>
+
+        <item name="Chanel_to_Gas[2]" caption="[Канал] содержит индекс газа (или -1)" type="signed char"/>
+        <item name="Gas_to_Chanel[2]" caption="[Газ] содержит номер разъема (или -1)" type="signed char"/>
+        <item name="Gas_to_Sens[2]" caption="[Газ] содержит индекс сенсора (или -1)" type="signed char"/>
+
+        <item name="total_workTime" caption="Суммарное время наработки, сек" type="unsigned long"/>
+        <item name="total_cntPower_ON" caption="Количество включений и перезагрузок прибора" type="unsigned long"/>
+        <item name="total_workTime_Gas" caption="Суммарное время наработки газового насоса, сек" type="unsigned long"/>
+        <item name="total_cntPower_ON_Gas" caption="Количество включений газового насоса" type="unsigned long"/>
+        <item name="total_workTime_Aer" caption="Суммарное время наработки насоса воздуха, сек" type="unsigned long"/>
+        <item name="total_cntPower_ON_Aer" caption="Количество включений насоса воздуха" type="unsigned long"/>
+
+        <item name="PC_ReadPacket" caption="Кол-во принятых пакетов" type="unsigned int"/>
+        <item name="PC_ErrorPacket" caption="Кол-во ошибочных пакетов" type="unsigned int"/>
+        <item name="PC_SendPacket" caption="Кол-во отправленных пакетов" type="unsigned int"/>
+    </ram>
+
+    <RAM_ERROR>
+        <item name="AnySensCalibrFault" caption="!=0 - Один из сенсоров требует калибровки" type="unsigned char"/>
+        <item name="AnySensCalibrFault" caption="!=0 - Интегральная сумма концентраций для одного из сенсоров выше допустимой" type="unsigned char"/>
+
+        <item name="ConfigFlag" caption="Маска конфигурации не соответствует реальному состоянию" type="unsigned long"/>
+        <item name="AD5420_NotConnect" caption="Нагрузки токовых выходов не подключены" type="unsigned char">
+            <mask value="0x01" caption="Нагрузка токового выхода 0 не подключена"/>
+            <mask value="0x02" caption="Нагрузка токового выхода 1 не подключена"/>
+            <mask value="0x04" caption="Нагрузка токового выхода 2 не подключена"/>
+        </item>
+
+        <item name="AD5420_OverTemp" caption="Перегрев м/с токовых выходов" type="unsigned char">
+            <mask value="0x01" caption="Перегрев М/С токового выхода 0"/>
+            <mask value="0x02" caption="Перегрев М/С токового выхода 1"/>
+            <mask value="0x04" caption="Перегрев М/С токового выхода 2"/>
+        </item>
+
+        <item name="SignalPGS" caption="Ошибки сигналов ПГС при калибровке" type="unsigned int">
+            <mask value="0x0001" caption="Сигнал ПГС-0 меньше ожидаемого"/>
+            <mask value="0x0100" caption="Сигнал ПГС-0 больше ожидаемого"/>
+            <mask value="0x0002" caption="Сигнал ПГС-1 меньше ожидаемого"/>
+            <mask value="0x0200" caption="Сигнал ПГС-1 больше ожидаемого"/>
+        </item>
+
+        <item name="ErrorSens_0" type="unsigned int">
+            <mask value="0x0001" caption="Сигнал сенсора N, при прокачке газа, меньше допустимого"/>
+            <mask value="0x0002" caption="Сигнал сенсора N, при прокачке газа, меньше допустимого"/>
+            <mask value="0x0004" caption="Сигнал сенсора N, при прокачке газа, больше допустимого"/>
+            <mask value="0x0008" caption="Сигнал сенсора N, при прокачке газа, больше допустимого"/>
+            <mask value="0x0010" caption="Сигнал сенсора N, при прокачке воздуха, меньше допустимого"/>
+            <mask value="0x0020" caption="Сигнал сенсора N, при прокачке воздуха, меньше допустимого"/>
+            <mask value="0x0040" caption="Сигнал сенсора N, при прокачке воздуха, больше допустимого"/>
+            <mask value="0x0080" caption="Сигнал сенсора N, при прокачке воздуха, больше допустимого"/>
+            <mask value="0x0100" caption="Сенсор отсутствует"/>
+            <mask value="0x0200" caption="Нет первичной калибровки"/>
+            <mask value="0x0400" caption="Нет плановой калибровки"/>
+            <mask value="0x0800" caption="Крутизна сенсора не корректна"/>
+            <mask value="0x1000" caption="Крутизна сенсора слишком мала"/>
+            <mask value="0x2000" caption="Превышение интегральной суммы концентраций"/>
+        </item>
+
+        <item name="ErrorSens_1" type="unsigned int">
+            <mask value="0x0001" caption="Сигнал сенсора N, при прокачке газа, меньше допустимого"/>
+            <mask value="0x0002" caption="Сигнал сенсора N, при прокачке газа, меньше допустимого"/>
+            <mask value="0x0004" caption="Сигнал сенсора N, при прокачке газа, больше допустимого"/>
+            <mask value="0x0008" caption="Сигнал сенсора N, при прокачке газа, больше допустимого"/>
+            <mask value="0x0010" caption="Сигнал сенсора N, при прокачке воздуха, меньше допустимого"/>
+            <mask value="0x0020" caption="Сигнал сенсора N, при прокачке воздуха, меньше допустимого"/>
+            <mask value="0x0040" caption="Сигнал сенсора N, при прокачке воздуха, больше допустимого"/>
+            <mask value="0x0080" caption="Сигнал сенсора N, при прокачке воздуха, больше допустимого"/>
+            <mask value="0x0100" caption="Сенсор отсутствует"/>
+            <mask value="0x0200" caption="Нет первичной калибровки"/>
+            <mask value="0x0400" caption="Нет плановой калибровки"/>
+            <mask value="0x0800" caption="Крутизна сенсора не корректна"/>
+            <mask value="0x1000" caption="Крутизна сенсора слишком мала"/>
+            <mask value="0x2000" caption="Превышение интегральной суммы концентраций"/>
+        </item>
+    </RAM_ERROR>
+
+    <RAM_ADC>
+        <item name="DeltaT" caption="Период обновления данных от ADCI (sec)" type="float"/>
+        <item name="Code_ADCI[7]" caption="Коды" type="unsigned long"/>
+        <item name="Signal_Tok0" caption="Сигнал канала входного тока 0 (В)" type="float"/>
+        <item name="Signal_Tok1" caption="Сигнал канала входного тока 1 (В)" type="float"/>
+        <item name="Signal_Iheat" caption="Сигнал канала тока нагревателя датчика BoshO2 (В)" type="float"/>
+        <item name="Signal_Uheat" caption="Сигнал канала напряжения нагревателя датчика BoshO2 (В)" type="float"/>
+        <item name="Signal_BoshO2" caption="Сигнал канала датчика BoshO2 (В)" type="float"/>
+        <item name="Signal_SensG0" caption="Сигнал канала газового сенсора 0 (В)" type="float"/>
+        <item name="Signal_SensG1" caption="Сигнал канала газового сенсора 1 (В)" type="float"/>
+        <item name="Code_AD7192[4]" caption="Усредненные коды, без chTbox7192" type="unsigned int"/>
+        <item name="Signal_AD7192[4]" caption="Сигналы (Вольт для газа, мА для тока), без chTbox7192" type="float"/>
+        <item name="ErrorFlag_AD7192" caption="" type="unsigned char"/>
+    </RAM_ADC>
+    
+
+
+
+    <RAM_CLB_SENS>
+        <item name="Density_PGS_GAS_0[2]" caption="Концентрация ПГС[0] при калибровке сенсора" type="float"/>
+        <item name="Signal_PGS_GAS_0[2]" caption="Калибровочный сигнал сенсора[0] от ПГС" type="float"/>
+        <item name="Density_PGS_GAS_1[2]" caption="Концентрация ПГС[1] при калибровке сенсора" type="float"/>
+        <item name="Signal_PGS_GAS_1[2]" caption="Калибровочный сигнал сенсора[1] от ПГС" type="float"/>
+        <item name="GasCalibrMatrix_him_sens[2][2]" caption="Матрица калибровочных коэффициентов (хим. сенсор)" type="float"/>
+    </RAM_CLB_SENS>
+
+    <EPROM address="8192">
+        <item name="deviceDefault" caption="Если == 0xFF -> восстановление EPROM по умолчанию" type="unsigned char"/>
+        <item name="deviceFlashed" type="unsigned char"/>
+        <item name="MyAddress" caption="Сетевой адрес устройства" type="unsigned char"/>
+        <item name="deviceID" type="unsigned int"/>
+
+        <item name="ShowMask" type="unsigned long">
+            <mask value="0x00000001" caption="Показывать на индикаторе концентрацию CO"/>
+            <mask value="0x00000002" caption="Показывать на индикаторе концентрацию NO"/>
+            <mask value="0x00000004" caption="Показывать на индикаторе концентрацию O2"/>
+            <mask value="0x00000008" caption="Показывать на индикаторе вычисленную концентрацию NOx"/>
+            <mask value="0x00000010" caption="Показывать на индикаторе вычисленную концентрацию CO2"/>
+            <mask value="0x00000020" caption="Показывать на индикаторе значение Alfa"/>
+            <mask value="0x00000040" caption="Показывать на индикаторе максимальный КПД"/>
+            <mask value="0x00000080" caption="Показывать на индикаторе минимальный КПД"/>
+            <mask value="0x00000100" caption="Показывать на индикаторе температуру газа 0"/>
+            <mask value="0x00000200" caption="Показывать на индикаторе температуру газа 1"/>
+            <mask value="0x00000400" caption="Показывать на индикаторе значение входного тока 0"/>
+            <mask value="0x00000800" caption="Показывать на индикаторе значение входного тока 1"/>
+            <mask value="0x00001000" caption="Показывать на индикаторе температуру воздуха"/>
+            <mask value="0x00002000" caption="Показывать на индикаторе давление воздуха"/>
+            <mask value="0x00004000" caption="Показывать на индикаторе ток нагревателя"/>
+            <mask value="0x00008000" caption="Показывать на индикаторе напряжение нагревателя"/>
+        </item>
+
+        <item name="ConfigParamMask" type="unsigned long">
+            <mask value="0x00000001" caption="Обработка сенсора CO"/>
+            <mask value="0x00000002" caption="Обработка сенсора NO"/>
+            <mask value="0x00000004" caption="Обработка сенсора O2"/>
+            <mask value="0x00000008" caption="Вычислять концентрацию NOx"/>
+            <mask value="0x00000010" caption="Вычислять концентрацию CO2"/>
+            <mask value="0x00000020" caption="Вычислять значение Alfa"/>
+            <mask value="0x00000040" caption="Вычислять максимальный КПД"/>
+            <mask value="0x00000080" caption="Вычислять минимальный КПД"/>
+            <mask value="0x00000100" caption="Обработка датчика температуры газа 0"/>
+            <mask value="0x00000200" caption="Обработка датчика температуры газа 1"/>
+            <mask value="0x00000400" caption="Обработка датчика входного тока 0"/>
+            <mask value="0x00000800" caption="Обработка датчика входного тока 1"/>
+            <mask value="0x00001000" caption="Обработка датчика температуры воздуха"/>
+            <mask value="0x00002000" caption="Обработка датчика давления воздуха"/>
+            <mask value="0x00004000" caption="Обработка датчика тока нагревателя"/>
+            <mask value="0x00008000" caption="Обработка датчика напряжения нагревателя"/>
+        </item>
+
+        <item name="ErrorFlagMask" type="unsigned long"/>
+        
+
+        <item name="UsersConfig" type="unsigned char">
+            <mask value="0x01" caption="Признак приведения к О2 - не используется"/>
+            <mask value="0x02" caption="Коррекция величин, выходящих за пределы допустимого"/>
+            <mask value="0x04" caption="фиксация О2 при продувке воздухом"/>
+            <mask value="0x08" caption="Имя прибора: 0 - ИКТС-11, 1 - БИК"/>
+        </item>
+
+        <item name="ConfigADC" type="unsigned char">
+            <mask value="0x01" caption="Запрет использования 24-битного AD7192"/>
+        </item>
+
+        <item name="U_Heater_set" caption="Заданное напряжение нагревателя сенсора O2, В" type="float"/>
+        <item name="Signal_O2_null" caption="Нулевой сигнал сенсора О2 при калибровке сенсора О2, В" type="float"/>
+        <item name="Density_O2_1" caption="Концентрация О2 при калибровке сенсора О2 в точке 1, %" type="float"/>
+        <item name="Density_O2_2" caption="Концентрация О2 при калибровке сенсора О2 в точке 2, %" type="float"/>
+        <item name="Signal_O2_1" caption="Сигнал сенсора О2 при прокачке ПГС О2_1 (Density_O2_1), В" type="float"/>
+        <item name="Signal_O2_2" caption="Сигнал сенсора О2 при прокачке ПГС О2_2 (Density_O2_2), В" type="float"/>
+
+        <item name="Corr_O2_aer" caption="Корректирующий множитель О2 для воздуха" type="float"/>
+        <item name="Corr_O2_P" caption="Корректирующий множитель О2 по давлению" type="float"/>
+        <item name="Reserv" caption="" type="float"/>
+
+        <item name="timLocalStop" caption="Пауза в цикле (для коммутации ключей), сек" type="unsigned long"/>
+        <item name="timPumpAer" caption="Время прокачки воздуха, сек" type="unsigned long"/>
+        <item name="timPeriodAer" caption="Период прокачки воздуха, сек" type="unsigned long"/>
+        <item name="timPrePumpGas" caption="Время предварительной прокачки пробы без измерения, сек" type="unsigned long"/>
+        <item name="timPumpGas" caption="Время прокачки пробы с измерением, сек" type="unsigned long"/>
+        <item name="timPeriodGas" caption="Период прокачки газа, сек" type="unsigned long"/>
+        <item name="timRestart" caption="Время рестарта после превышения концентрации, сек" type="unsigned long"/>
+        <item name="timEmergencyPampAer" caption="Максимальное время прокачки воздуха после превышения концентрации, сек" type="unsigned long"/>
+        <item name="timEmergency_stop" caption="Время аварийной остановки после перегрузки заданное число раз, сек" type="unsigned long"/>
+
+        <item name="FuelIdx" caption="Вид топлива" type="unsigned char">
+            <mode value="0" caption="Газ природный1"/>
+            <mode value="1" caption="Газ природный2"/>
+            <mode value="2" caption="Газ коксовый"/>
+            <mode value="3" caption="Газ пропан"/>
+            <mode value="4" caption="Газ бутан"/>
+            <mode value="5" caption="Газ бытовой"/>
+            <mode value="6" caption="Газ_Москва"/>
+            <mode value="7" caption="Газ_Фергана"/>
+            <mode value="8" caption="Газ_Грозный"/>
+            <mode value="9" caption="Газ_Камышин"/>
+            <mode value="10" caption="Газ_Оренбург"/>
+            <mode value="11" caption="Мазут"/>
+            <mode value="12" caption="Маз.малосерн."/>
+            <mode value="13" caption="Маз.высокосерн."/>
+            <mode value="14" caption="Уголь"/>
+            <mode value="15" caption="Антрацит"/>
+            <mode value="16" caption="Кокс"/>
+            <mode value="17" caption="Уг.Печерский"/>
+            <mode value="18" caption="Уг.Канско-Ачин."/>
+            <mode value="19" caption="Уг.Подмосковный"/>
+            <mode value="20" caption="Уг.Экибазтуз."/>
+            <mode value="21" caption="Уг.Кузнецкий"/>
+            <mode value="22" caption="Диз.топливо"/>
+        </item>
+
+        <item name="K_NO_NO2" caption="Коэффициент для расчета NOx (0.8...0.94...1)" type="float"/>
+
+        <item name="TokIn0_to_param" caption="Конфигурация токовых входов" type="unsigned char">
+            <mode value="0" caption="Входной ток 0 (мА)"/>
+            <mode value="1" caption="Температура газа 0 (°С)"/>
+            <mode value="2" caption="Температура воздуха 0 (°С)"/>
+        </item>
+
+        <item name="TokIn1_to_param" caption="Конфигурация токовых входов" type="unsigned char">
+            <mode value="0" caption="Входной ток 1 (мА)"/>
+            <mode value="1" caption="Температура газа 1 (°С)"/>
+            <mode value="2" caption="Температура воздуха 1 (°С)"/>
+        </item>
+
+        <item name="CountGasDensityMax" caption="Число аварийных прокачек воздуха при превышении максимальной концентрации газа" type="unsigned char"/>
+        <item name="ProtocolType" caption="Тип протокола. 0 - EDP; 1 - Modbus" type="unsigned char"/>
+        <item name="MB_RTU_BaudRate" caption="Битрейт протокола Modbus" type="float"/>
+        <item name="MB_RTU_LinkParam" caption="0-нет паритета N1, 1 стоп; 1-Even, 1 стоп; 2-Odd, 1 стоп; 3-нет паритета N2" type="unsigned char"/>
+        <item name="MB_RTU_SwapData" caption="0-ABCD->ABCD; 1-ABCD->BADC" type="unsigned char"/>
+
+        <item name="CO_Units" caption="Единица концентрации CO при отображении на LCD" type="unsigned char">
+            <mode value="0" caption="ppm"/>
+            <mode value="1" caption="%об"/>
+            <mode value="3" caption="грам"/>
+            <mode value="4" caption="миллиграм"/>
+            <mode value="5" caption="Вольт"/>
+        </item>
+
+        <item name="NO_Units" caption="Единица концентрации NO при отображении на LCD" type="unsigned char">
+            <mode value="0" caption="ppm"/>
+            <mode value="1" caption="%об"/>
+            <mode value="3" caption="грам"/>
+            <mode value="4" caption="миллиграм"/>
+            <mode value="5" caption="Вольт"/>
+        </item>
+
+        <item name="O2_Units" caption="Единица концентрации O2 при отображении на LCD" type="unsigned char">
+            <mode value="1" caption="%об"/>
+            <mode value="3" caption="грам"/>
+            <mode value="4" caption="миллиграм"/>
+            <mode value="5" caption="Вольт"/>
+        </item>
+
+        <item name="NOx_Units" caption="Единица вычисленной концентрации NOx при отображении на LCD" type="unsigned char">
+            <mode value="0" caption="ppm"/>
+            <mode value="1" caption="%об"/>
+        </item>
+
+        <item name="calckCO2_Units" caption="Единица вычисленной концентрации CO2 при отображении на LCD" type="unsigned char">
+            <mode value="0" caption="ppm"/>
+            <mode value="1" caption="%об"/>
+        </item>
+
+        <item name="Alfa_Units" type="unsigned char"/>
+
+        <item name="PerformMax_Units" caption="Отображение КПД на LCD" type="unsigned char">
+            <mode value="4" caption="процент"/>
+            <mode value="0" caption="относительная величина"/>
+        </item>
+
+        <item name="PerformMin_Units" caption="Отображение КПД на LCD" type="unsigned char">
+            <mode value="4" caption="процент"/>
+            <mode value="0" caption="относительная величина"/>
+        </item>
+        
+
+        <item name="TokIn0_Units" type="unsigned char"/>
+        <item name="TokIn1_Units" type="unsigned char"/>
+        <item name="Iheat_Units" caption="Единица  тока нагрузки (А)" type="unsigned char"/>
+        <item name="Uheat_Units," caption="Единица напряжения нагрузки (В)" type="unsigned char"/>
+        <item name="MaxMenuTime" caption="Таймаут для сброса всех режимов меню, сек" type="unsigned int"/>
+    </EPROM>
+    
+    <EPROM_ADC>
+        <item name="Len_Slid_him_sens" caption="Длина буфера скользящего усреднения для химических сенсоров" type="unsigned char"/>
+        <item name="Len_Slid_O2" caption="Длина буфера скользящего усреднения для BoshO2" type="unsigned char"/>
+        <item name="N_Avg_ADCI" caption="Количество измерений на одно усреднение" type="unsigned int"/>
+
+        <item name="chiTok0_Clb_Signal_0" type="float" caption="Сигнал в первой точке калибровки входного тока 0, В"/>
+        <item name="chiTok0_Clb_Result_0" type="float" caption="Ток в первой точке калибровки входного тока 0, мА"/>
+        <item name="chiTok0_Clb_Signal_1" type="float" caption="Сигнал во второй точке калибровки входного тока 0, В"/>
+        <item name="chiTok0_Clb_Result_1" type="float" caption="Ток во второй точке калибровки входного тока 0, мА"/>
+
+        <item name="chiTok1_Clb_Signal_0" type="float" caption="Сигнал в первой точке калибровки входного тока 1, В"/>
+        <item name="chiTok1_Result_0" type="float" caption="Ток в первой точке калибровки входного тока 1, мА"/>
+        <item name="chiTok1_Clb_Signal_0" type="float" caption="Сигнал во второй точке калибровки входного тока 1, В"/>
+        <item name="chiTok1_Result_0" type="float" caption="Ток во второй точке калибровки входного тока 1, мА"/>
+        
+        <item name="chiIheat_Clb_Signal_0" type="float" caption="Сигнал в первой точке калибровки тока нагревателя, В"/>
+        <item name="chiIheat_Clb_Result_0" type="float" caption="Ток нагревателя в первой точке калибровки , А"/>
+        <item name="chiIheat_Clb_Signal_1" type="float" caption="Сигнал во второй точке калибровки тока нагревателя, В"/>
+        <item name="chiIheat_Clb_Result_1" type="float" caption="Ток нагревателя во второй точке калибровки , А"/>
+
+        <item name="chiUheat_Clb_Signal_0" type="float" caption="Сигнал в первой точке калибровки напряжения нагревателя, В"/>
+        <item name="chiUheat_Clb_Result_0" type="float" caption="Напряжение нагревателя в первой точке калибровки , В"/>
+        <item name="chiUheat_Clb_Signal_1" type="float" caption="Сигнал во второй точке калибровки напряжения нагревателя, В"/>
+        <item name="chiUheat_Clb_Result_1" type="float" caption="Напряжение нагревателя во второй точке калибровки , В"/>
+
+        <item name="chiBoshO2_Clb_Signal_0" type="float" caption="Сигнал в первой точке калибровки канала chiBoshO2, В"/>
+        <item name="chiBoshO2_Clb_Result_0" type="float" caption="Напряжение канала chiBoshO2 в первой точке калибровки , В"/>
+        <item name="chiBoshO2_Clb_Signal_1" type="float" caption="Сигнал во второй точке калибровки канала chiBoshO2, В"/>
+        <item name="chiBoshO2_Clb_Result_1" type="float" caption="Напряжение канала chiBoshO2 во второй точке калибровки , В"/>
+
+        <item name="chiG0_Clb_Signal_0" type="float" caption="Сигнал в первой точке калибровки канала chiG0, В"/>
+        <item name="chiG0_Clb_Result_0" type="float" caption="Напряжение канала chiBoshO2 в первой точке калибровки , В"/>
+        <item name="chiG0_Clb_Signal_1" type="float" caption="Сигнал во второй точке калибровки канала chiG0, В"/>
+        <item name="chiG0_Clb_Result_1" type="float" caption="Напряжение канала chiBoshO2 во второй точке калибровки , В"/>
+
+        <item name="chiG1_Clb_Signal_0" type="float" caption="Сигнал в первой точке калибровки канала chiG1, В"/>
+        <item name="chiG1_Clb_Result_0" type="float" caption="Напряжение канала chiBoshO2 в первой точке калибровки , В"/>
+        <item name="chiG1_Clb_Signal_0" type="float" caption="Сигнал во второй точке калибровки канала chiG1, В"/>
+        <item name="chiG1_Clb_Result_0" type="float" caption="Напряжение канала chiBoshO2 во второй точке калибровки , В"/>
+
+        <item name="Tok_to_parametr_0_Signal_0" type="float" caption="Канал 0, точка 0. Входной ток (мА)"/>
+        <item name="Tok_to_parametr_0_Result_0" type="float" caption="Канал 0, точка 0. Результат = F(Iвх) в единицах результата"/>
+        <item name="Tok_to_parametr_0_Signal_1" type="float" caption="Канал 0, точка 1. Входной ток (мА)"/>
+        <item name="Tok_to_parametr_0_Result_1" type="float" caption="Канал 0, точка 1. Результат = F(Iвх) в единицах результата"/>
+
+        <item name="Tok_to_parametr_1_Signal_0" type="float" caption="Канал 1, точка 0. Входной ток (мА)"/>
+        <item name="Tok_to_parametr_1_Result_0" type="float" caption="Канал 1, точка 0. Результат = F(Iвх) в единицах результата"/>
+        <item name="Tok_to_parametr_1_Signal_1" type="float" caption="Канал 1, точка 1. Входной ток (мА)"/>
+        <item name="Tok_to_parametr_1_Result_1" type="float" caption="Канал 1, точка 1. Результат = F(Iвх) в единицах результата"/>
+
+        <item name="chG0_AD7192" caption="Калибровочный коэффициет для канала chG0 - крутизна" type="float"/>
+        <item name="chG1_AD7192" caption="Калибровочный коэффициет для канала chG1 - крутизна" type="float"/>
+        <item name="chBoshO2_AD7192" caption="Калибровочный коэффициет для канала chBoshO2 - крутизна" type="float"/>
+        <item name="chUheat_AD7192" caption="Калибровочный коэффициет для канала chUheat - крутизна" type="float"/>
+    </EPROM_ADC>
+
+    <EPROM_TOK_OUT>
+        <item name="Tok_ToSigName[3]" caption="Связь выходного тока N с именем параметра" type="unsigned char">
+            <mode value="0" caption="Концентрация CO"/>
+            <mode value="1" caption="Концентрация NO"/>
+            <mode value="2" caption="Концентрация O2"/>
+            <mode value="3" caption="Вычисленная концентрация NOx"/>
+            <mode value="4" caption="Вычисленная концентрация CO2"/>
+            <mode value="5" caption="Коэффициент избытка воздуха"/>
+            <mode value="6" caption="Максимальный КПД"/>
+            <mode value="7" caption="Минимальный КПД"/>
+            <mode value="8" caption="Температура газа 0"/>
+            <mode value="9" caption="Температура газа 0"/>
+            <mode value="10" caption="Входной ток 0"/>
+            <mode value="11" caption="Входной ток 1"/>
+            <mode value="16" caption="Управление током от ПК"/>
+        </item>
+        
+        <item name="TokRange[3]" caption="Диапазон изменения тока, мА" type="unsigned char">
+            <mode value="0" caption="Диапазон изменения тока 0 - 5, мА"/>
+            <mode value="1" caption="Диапазон изменения тока 4 - 20, мА"/>
+            <mode value="2" caption="Диапазон изменения тока 0 - 10, мА"/>
+            <mode value="3" caption="Диапазон изменения тока 0 - 20, мА"/>
+        </item>
+
+        <item name="SigMin_0_CO" caption="Нижнее значение концентрации CO для канала 0" type="float"/>
+        <item name="SigMax_0_CO" caption="Верхнее значение концентрации CO для канала 0" type="float"/>
+        <item name="SigMin_0_NO" caption="Нижнее значение концентрации NO для канала 0" type="float"/>
+        <item name="SigMax_0_NO" caption="Верхнее значение концентрации NO для канала 0" type="float"/>
+        <item name="SigMin_0_O2" caption="Нижнее значение концентрации O2 для канала 0" type="float"/>
+        <item name="SigMax_0_O2" caption="Верхнее значение концентрации O2 для канала 0" type="float"/>
+        <item name="SigMin_0_calckNOx" caption="Нижнее значение концентрации NOx для канала 0" type="float"/>
+        <item name="SigMax_0_calckNOx" caption="Верхнее значение концентрации NOx для канала 0" type="float"/>
+        <item name="SigMin_0_calckCO2" caption="Нижнее значение концентрации CO2 для канала 0" type="float"/>
+        <item name="SigMax_0_calckCO2" caption="Верхнее значение концентрации CO2 для канала 0" type="float"/>
+        <item name="SigMin_0_Alfa" caption="Нижнее значение Alfa для канала 0" type="float"/>
+        <item name="SigMax_0_Alfa" caption="Верхнее значение Alfa для канала 0" type="float"/>
+        <item name="SigMin_0_PerformMax" caption="Нижнее значение максимального КПД для канала 0" type="float"/>
+        <item name="SigMax_0_PerformMax" caption="Верхнее значение максимального КПД для канала 0" type="float"/>
+        <item name="SigMin_0_PerformMin" caption="Нижнее значение минимального КПД для канала 0" type="float"/>
+        <item name="SigMax_0_PerformMin" caption="Верхнее значение минимального КПД для канала 0" type="float"/>
+        <item name="SigMin_0_TokIn0" caption="Нижнее значение сигнала входного тока 0 для канала 0" type="float"/>
+        <item name="SigMax_0_TokIn0" caption="Верхнее значение сигнала входного тока 0 для канала 0" type="float"/>
+        <item name="SigMin_0_TokIn1" caption="Нижнее значение сигнала входного тока 1 для канала 0" type="float"/>
+        <item name="SigMax_0_TokIn1" caption="Верхнее значение сигнала входного тока 1 для канала 0" type="float"/>
+
+        <item name="SigMin_1_CO" caption="Нижнее значение концентрации CO для канала 1" type="float"/>
+        <item name="SigMax_1_CO" caption="Верхнее значение концентрации CO для канала 1" type="float"/>
+        <item name="SigMin_1_NO" caption="Нижнее значение концентрации NO для канала 1" type="float"/>
+        <item name="SigMax_1_NO" caption="Верхнее значение концентрации NO для канала 1" type="float"/>
+        <item name="SigMin_1_O2" caption="Нижнее значение концентрации O2 для канала 1" type="float"/>
+        <item name="SigMax_1_O2" caption="Верхнее значение концентрации O2 для канала 1" type="float"/>
+        <item name="SigMin_1_calckNOx" caption="Нижнее значение концентрации NOx для канала 1" type="float"/>
+        <item name="SigMax_1_calckNOx" caption="Верхнее значение концентрации NOx для канала 1" type="float"/>
+        <item name="SigMin_1_calckCO2" caption="Нижнее значение концентрации CO2 для канала 1" type="float"/>
+        <item name="SigMax_1_calckCO2" caption="Верхнее значение концентрации CO2 для канала 1" type="float"/>
+        <item name="SigMin_1_Alfa" caption="Нижнее значение Alfa для канала 1" type="float"/>
+        <item name="SigMax_1_Alfa" caption="Верхнее значение Alfa для канала 1" type="float"/>
+        <item name="SigMin_1_PerformMax" caption="Нижнее значение максимального КПД для канала 1" type="float"/>
+        <item name="SigMax_1_PerformMax" caption="Верхнее значение максимального КПД для канала 1" type="float"/>
+        <item name="SigMin_1_PerformMin" caption="Нижнее значение минимального КПД для канала 1" type="float"/>
+        <item name="SigMax_1_PerformMin" caption="Верхнее значение минимального КПД для канала 1" type="float"/>
+        <item name="SigMin_1_TokIn0" caption="Нижнее значение сигнала входного тока 0 для канала 1" type="float"/>
+        <item name="SigMax_1_TokIn0" caption="Верхнее значение сигнала входного тока 0 для канала 1" type="float"/>
+        <item name="SigMin_1_TokIn1" caption="Нижнее значение сигнала входного тока 1 для канала 1" type="float"/>
+        <item name="SigMax_1_TokIn1" caption="Верхнее значение сигнала входного тока 1 для канала 1" type="float"/>
+
+        <item name="SigMin_2_CO" caption="Нижнее значение концентрации CO для канала 2" type="float"/>
+        <item name="SigMax_2_CO" caption="Верхнее значение концентрации CO для канала 2" type="float"/>
+        <item name="SigMin_2_NO" caption="Нижнее значение концентрации NO для канала 2" type="float"/>
+        <item name="SigMax_2_NO" caption="Верхнее значение концентрации NO для канала 2" type="float"/>
+        <item name="SigMin_2_O2" caption="Нижнее значение концентрации O2 для канала 2" type="float"/>
+        <item name="SigMax_2_O2" caption="Верхнее значение концентрации O2 для канала 2" type="float"/>
+        <item name="SigMin_2_calckNOx" caption="Нижнее значение концентрации NOx для канала 2" type="float"/>
+        <item name="SigMax_2_calckNOx" caption="Верхнее значение концентрации NOx для канала 2" type="float"/>
+        <item name="SigMin_2_calckCO2" caption="Нижнее значение концентрации CO2 для канала 2" type="float"/>
+        <item name="SigMax_2_calckCO2" caption="Верхнее значение концентрации CO2 для канала 2" type="float"/>
+        <item name="SigMin_2_Alfa" caption="Нижнее значение Alfa для канала 2" type="float"/>
+        <item name="SigMax_2_Alfa" caption="Верхнее значение Alfa для канала 2" type="float"/>
+        <item name="SigMin_2_PerformMax" caption="Нижнее значение максимального КПД для канала 2" type="float"/>
+        <item name="SigMax_2_PerformMax" caption="Верхнее значение максимального КПД для канала 2" type="float"/>
+        <item name="SigMin_2_PerformMin" caption="Нижнее значение минимального КПД для канала 2" type="float"/>
+        <item name="SigMax_2_PerformMin" caption="Верхнее значение минимального КПД для канала 2" type="float"/>
+        <item name="SigMin_2_TokIn0" caption="Нижнее значение сигнала входного тока 0 для канала 2" type="float"/>
+        <item name="SigMax_2_TokIn0" caption="Верхнее значение сигнала входного тока 0 для канала 2" type="float"/>
+        <item name="SigMin_2_TokIn1" caption="Нижнее значение сигнала входного тока 1 для канала 2" type="float"/>
+        <item name="SigMax_2_TokIn1" caption="Верхнее значение сигнала входного тока 1 для канала 2" type="float"/>
+    </EPROM_TOK_OUT>
+
+    <EPROM_NO_WR>
+        <item name="EEsaved_EE" caption="== 85, если есть сохраненная копия EEPROM в EEPROM" type="unsigned char"/>
+        <item name="EEsaved_FL" caption="== E85, если есть сохраненная копия EEPROM в FLASH" type="unsigned char"/>
+    </EPROM_NO_WR>
+
+    <!--
+    <DEV_SENSOR_0 address="12288">
+        
+      <item name="Pass" type="unsigned long"/>
+        <item name="I2C_address" type="unsigned char"/>
+        <item name="IndexGas" type="unsigned char"/>
+        <item name="IndexSens" type="unsigned char"/>
+        <item name="Gas_Name" type="STRING 5"/>
+        <item name="Sens_Name" type="STRING 8"/>
+        <item name="InitFactor" type="unsigned char"/>
+        <item name="CalibrFactor" type="unsigned char"/>
+        <item name="PrimePGS" type="float"/>
+        <item name="PrimeSIG" type="float"/>
+        <item name="PrimeAER" type="float"/>
+        <item name="WorkDensityMax" type="float"/>
+        <item name="DeadDensityMax" type="float"/>
+        <item name="SensTime" type="unsigned long"/>
+        <item name="SensTimeDensityMax" type="float"/>
+        <item name="LiveTime" type="unsigned long"/>
+        <item name="LiveTimeDensityAvg" type="float"/>
+        <item name="LiveTimeDensityMax" type="float"/>
+        <item name="GasSignalMin" type="float"/>
+        <item name="GasSignalMax" type="float"/>
+        <item name="AerSignalMin" type="float"/>
+        <item name="AerSignalMax" type="float"/>
+        <item name="SumDensity" type="float"/>
+        <item name="GasWeight" type="float"/>
+        <item name="RelationFrom_T" type="float[10]"/>
+        <item name="RelationFrom_P" type="float[10]"/>
+        <item name="ClbInterval" type="unsigned int"/>
+        <item name="DateDay" type="unsigned char"/>
+        <item name="DateMonth" type="unsigned char"/>
+        <item name="DateYear" type="unsigned char"/>
+        <item name="Number" type="unsigned long"/>
+
+        <item name="AerSignalNom" caption="Номинальный (расчетный) выходной сигнал для воздуха, В" type="float"/>
+        <item name="PrimeSlope" caption="Крутизна сенсора, полученная при первой калибровке, В/ppm" type="float"/>
+        <item name="CurrentSlope" caption="Крутизна сенсора, получаемая при последующих калибровках, В/ppm" type="float"/>
+        <item name="AgingFactorMax" caption="Допустимый фактор старения сенсора" type="float"/>
+        <item name="ClbDensityPGS" type="float[10]"/>
+        <item name="ClbSignalPGS" type="float[10]"/>
+    </DEV_SENSOR_0>
+    -->
+
+    <!--
+    <DEV_SENSOR_1>
+        
+      <item name="Pass" type="unsigned long"/>
+        <item name="I2C_address" type="unsigned char"/>
+        <item name="IndexGas" type="unsigned char"/>
+        <item name="IndexSens" type="unsigned char"/>
+        <item name="Gas_Name" type="STRING 5"/>
+        <item name="Sens_Name" type="STRING 8"/>
+        <item name="InitFactor" type="unsigned char"/>
+        <item name="CalibrFactor" type="unsigned char"/>
+        <item name="PrimePGS" type="float"/>
+        <item name="PrimeSIG" type="float"/>
+        <item name="PrimeAER" type="float"/>
+        <item name="WorkDensityMax" type="float"/>
+        <item name="DeadDensityMax" type="float"/>
+        <item name="SensTime" type="unsigned long"/>
+        <item name="SensTimeDensityMax" type="float"/>
+        <item name="LiveTime" type="unsigned long"/>
+        <item name="LiveTimeDensityAvg" type="float"/>
+        <item name="LiveTimeDensityMax" type="float"/>
+        <item name="GasSignalMin" type="float"/>
+        <item name="GasSignalMax" type="float"/>
+        <item name="AerSignalMin" type="float"/>
+        <item name="AerSignalMax" type="float"/>
+        <item name="SumDensity" type="float"/>
+        <item name="GasWeight" type="float"/>
+        <item name="RelationFrom_T" type="float[10]"/>
+        <item name="RelationFrom_P" type="float[10]"/>
+        <item name="ClbInterval" type="unsigned int"/>
+        <item name="DateDay" type="unsigned char"/>
+        <item name="DateMonth" type="unsigned char"/>
+        <item name="DateYear" type="unsigned char"/>
+        <item name="Number" type="unsigned long"/>
+
+        <item name="AerSignalNom" caption="Номинальный (расчетный) выходной сигнал для воздуха, В" type="float"/>
+        <item name="PrimeSlope" caption="Крутизна сенсора, полученная при первой калибровке, В/ppm" type="float"/>
+        <item name="CurrentSlope" caption="Крутизна сенсора, получаемая при последующих калибровках, В/ppm" type="float"/>
+        <item name="AgingFactorMax" caption="Допустимый фактор старения сенсора" type="float"/>
+        <item name="ClbDensityPGS" type="float[10]"/>
+        <item name="ClbSignalPGS" type="float[10]"/>
+    </DEV_SENSOR_1>
+    -->
+    
+</device>

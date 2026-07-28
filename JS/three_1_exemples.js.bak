@@ -1,0 +1,1 @@
+	new THREE.BoxGeometry(width : Float, height : Float, depth : Float, widthSegments : Integer, heightSegments : Integer, depthSegments : Integer)

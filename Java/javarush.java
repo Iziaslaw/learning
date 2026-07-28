@@ -1,0 +1,498 @@
+/*Попробуем сконструировать свой первый небоскреб и объявить о результате выполнения в консоли. Для этого тебе нужно вызвать конструктор класса Skyscraper в методе main и в теле конструктора вывести в консоль текст "Небоскреб построен.".
+*/
+package com.javarush.task.pro.task10.task1001;
+
+/* 
+Создадим небоскреб
+*/
+
+public class Skyscraper {
+
+    public Skyscraper(){
+        System.out.print("Небоскреб построен.");
+    }//напишите тут ваш код
+
+    public static void main(String[] args) {
+        Skyscraper skyscraper = new Skyscraper();//напишите тут ваш код
+    }
+}
+/*Давай построим жилой комплекс из трех высоток. Для этого мы будем использовать три разных способа вывода информации:
+Объявляет о результате постройки.
+Объявляет о результате и указывает количество этажей.
+Объявляет о результате и указывает застройщика.
+Пример вывода:
+Небоскреб построен.
+Небоскреб построен. Количество этажей - 50
+Небоскреб построен. Застройщик - JavaRushDevelopment */
+package com.javarush.task.pro.task10.task1002;
+
+/* 
+Построим новый жилой комплекс JavaRush Towers
+*/
+
+public class Skyscraper {
+    public static final String SKYSCRAPER_WAS_BUILD = "Небоскреб построен.";
+    public static final String SKYSCRAPER_WAS_BUILD_FLOORS_COUNT = "Небоскреб построен. Количество этажей - ";
+    public static final String SKYSCRAPER_WAS_BUILD_DEVELOPER = "Небоскреб построен. Застройщик - ";
+
+    public Skyscraper(){
+        System.out.println(SKYSCRAPER_WAS_BUILD);
+    };//напишите тут ваш код
+    public Skyscraper(int x){
+        System.out.println(SKYSCRAPER_WAS_BUILD_FLOORS_COUNT+x);
+    };//напишите тут ваш код
+    public Skyscraper(String str){
+        System.out.println(SKYSCRAPER_WAS_BUILD_DEVELOPER+str);
+    };//напишите тут ваш код
+
+    public static void main(String[] args) {
+        Skyscraper skyscraper = new Skyscraper();
+        Skyscraper skyscraperTower = new Skyscraper(50);
+        Skyscraper skyscraperSkyline = new Skyscraper("JavaRushDevelopment");
+    }
+}
+/*Почувствуй себя автоконструктором и найди решение, как сделать так, чтобы завод снова заработал. Для этого тебе нужно добавить инициализацию полей в конструкторах соответствующими параметрами. Если параметр отсутствует, то нужно инициализировать поле значением по умолчанию. Для поля year это текущий год (4321), для поля color — Оранжевый.*/
+package com.javarush.task.pro.task10.task1004;
+
+/* 
+Жажда скорости
+*/
+
+public class CarConcern {
+    private final String manufacturer = "Lamborghini";
+    private final String model;
+    private final int year;
+    private final String color;
+
+    public CarConcern(String model, int year, String color) {
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+
+    public CarConcern(String model, int year) {
+        this.model = model;
+        this.year = year;
+        this.color ="Оранжевый";
+    }
+
+    public CarConcern(String model) {
+        this.model = model;
+        this.year = 4321;
+        this.color = "Оранжевый";
+    }
+}
+/*Постройка здания планировалась под ресторан и успешно завершилась, но спустя некоторое время собственники решили переделать его под барбершоп. Нам нужно сделать так, что бы здание было универсальным, и его назначение можно было менять, не создавая нового.
+Для этого создай метод initialize, который будет устанавливать значение полю type (определять тип здания), а конструктор убери.*/
+public class Building {
+    private String type;
+
+    public void initialize(String type) {
+        this.type = type;
+    }
+
+    public static void main(String[] args) {
+        Building building = new Building();
+        building.initialize("Барбершоп");
+    }
+
+}
+/*Getter Setter
+для изменения переменных класса*/
+class Point {
+   private int x;
+   private int y;
+
+   public Point(int x, int y) {
+      this.x = x < 0 ? 0 : x;
+      this.y = y < 0 ? 0 : y;
+   }
+
+   public int getX() {
+      return x;
+   }
+
+   public void setX(int x) {
+      this.x = x < 0 ?  0 : x;
+   }
+
+   public int getY() {
+      return y;
+   }
+
+   public void setY(int y) {
+      this.y = y < 0 ? 0 : y;
+   }
+}
+/* = new String ("..."); объект в Java Heap
+   ="..."; String Pool ячейка*/
+package com.javarush.task.pro.task10.task1009;
+
+/* 
+Сравнение строк
+*/
+
+public class Solution {
+
+    public static void main(String[] args) {
+        String s1 = new String("JavaRush");
+        s1 = "JavaRush";
+        String s2 = "JavaRush";
+//        s2 = new String("JavaRush");
+        String s3 = "JavaRush";
+//        s3 = new String("JavaRush");
+        System.out.println(s1 == s3);
+        System.out.println(s2.equals(s3));
+    }
+}
+/*В методе main создаются два айфона с одинаковыми параметрами.
+В консоли выводится результат их сравнения. Разберись, почему сейчас результат отрицательный и сделай так, чтобы он был положительным. Для этого тебе нужно переопределить метод equals(Iphone), который будет учитывать все параметры.
+У двух равных объектов значения полей должны быть одинаковыми. Метод main не участвует в проверке.*/
+package com.javarush.task.pro.task10.task1010;
+
+import java.util.Objects;
+
+/* 
+Два айфона
+*/
+
+public class Iphone {
+    private String model;
+    private String color;
+    private int price;
+
+    public Iphone(String model, String color, int price) {
+        this.model = model;
+        this.color = color;
+        this.price = price;
+    }
+	/*@override //аннотация для переопределения метода
+    public boolean equals(Object obj){
+        if (this == obj)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        if (!(obj instanceof Iphone))
+            return false;
+        Iphone iphone = (Iphone) obj;
+
+        if (this.color != iphone.color)
+            return false;
+        if (this.price != iphone.price)
+            return false;
+
+        if (this.model == null)
+            return iphone.model == null;
+
+        return this.model.equals(iphone.model);    
+    }*/
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Iphone iphone = (Iphone) o;
+        return price == iphone.price &&
+                Objects.equals(model, iphone.model) &&
+                Objects.equals(color, iphone.color);
+    }
+
+    public static void main(String[] args) {
+        Iphone iphone1 = new Iphone("X", "Black", 999);
+        Iphone iphone2 = new Iphone("X", "Black", 999);
+
+        System.out.println(iphone1.equals(iphone2));
+    }
+
+}
+/**/
+package com.javarush.task.pro.task10.task1011;
+
+import java.util.Objects;
+
+/* 
+Создаем свой hashCode
+*/
+
+public class Car {
+    private String model;
+    private int year;
+
+    public Car(String model, int year) {
+        this.model = model;
+        this.year = year;
+    }
+	@override
+    public int hashCode(){
+        //int result = model == null ? 0 : model.hashCode();
+        //return result+year;
+		return Objects.hash(model, year);
+    }
+
+    public static void main(String[] args) {
+        Car lamborghini = new Car("Lamborghini", 2020);
+        Car lamborghini1 = new Car("Lamborghini", 2020);
+        Car ferrari = new Car("Ferrari", 2020);
+        Car ferrari1 = new Car("Ferrari", 2020);
+        Car bugatti = new Car("Bugatti", 2020);
+        Car bugatti1 = new Car("Bugatti", 2020);
+        System.out.println(ferrari.hashCode() == ferrari.hashCode());
+        System.out.println(lamborghini.hashCode() == lamborghini1.hashCode());
+        System.out.println(ferrari.hashCode() == ferrari1.hashCode());
+        System.out.println(bugatti.hashCode() == bugatti1.hashCode());
+        System.out.println(bugatti.hashCode() == lamborghini.hashCode());
+        System.out.println(lamborghini.hashCode() == ferrari.hashCode());
+    }
+}
+//
+package com.javarush.task.pro.task10.task1015;
+
+/* 
+Ежик и яблоко
+*/
+
+public class Hedgehog {
+
+    public void eat(Apple apple) {
+        System.out.println("Яблоко было съедено!");
+    }
+
+    public static void main(String[] args) {
+        Apple apple = new Apple();
+        new Hedgehog().eat(apple);
+    }
+
+    public static class Apple {
+    }
+}
+//
+package com.javarush.task.pro.task10.task1016;
+
+/* 
+Прогноз погоды
+*/
+
+public class Solution {
+
+    public static void showWeather(City city) {
+        System.out.println(String.format("В городе %s сегодня температура воздуха %d", city.getName(), city.getTemperature()));
+    }
+
+    public static void main(String[] args) {
+        City city = new City("Zhytomir", 23);
+        showWeather(city);
+    }
+}
+//
+package com.javarush.task.pro.task10.task1017;
+
+/* 
+Создание материков
+*/
+
+public class Earth {
+    public static void main(String[] args) {
+        new Africa(30_370_000);
+        new Antarctica(14_200_000);
+        new Australia(8_600_000);
+        new Eurasia(55_000_000);
+        new NorthAmerica(24_709_000);
+        new SouthAmerica(17_840_000);
+    }
+}//
+package com.javarush.task.pro.task10.task1017;
+
+public class Australia {
+    private final int area;
+
+    public Australia(int area) {
+        this.area = area;
+    }
+}
+//
+package com.javarush.task.pro.task10.task1018;
+
+/* 
+Геттер и сеттер в деле
+*/
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Coordinate coordinate = new Coordinate();
+        coordinate.setX(15);
+        coordinate.setY(25);
+        System.out.println(coordinate.getX());
+        System.out.println(coordinate.getY());
+    }
+}//
+package com.javarush.task.pro.task10.task1018;
+
+public class Coordinate {
+    private int x;
+    private int y;
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+}
+//
+package com.javarush.task.pro.task10.task1019;
+
+import java.util.Calendar;
+
+/* 
+Текущий год
+*/
+
+public class Solution {
+
+    private int currentYear;
+
+    public Solution() {
+        this.currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    }
+
+    public int getCurrentYear() {
+        return currentYear;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.getCurrentYear());
+    }
+}
+//
+package com.javarush.task.pro.task10.task1020;
+
+public class Computer {//класс
+    public Computer() {//Конструктор класса
+        new SystemUnit();
+        new Keyboard();
+        new Monitor();
+        new Mouse();
+    }
+}
+//
+package com.javarush.task.pro.task10.task1021;
+
+/* 
+Автопроизводитель
+*/
+
+public class Car {
+    private String model;
+    private int year;
+    private String color;
+
+    public void initialize(String model, int year, String color){
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+
+}
+//
+Class a = "Привет".getClass(); Тот же объект, что и String.class
+Class b = new Integer().getClass(); Тот же объект, что и Integer.class
+Class c = Boolean.TRUE.getClass(); Тот же объект, что и Boolean.class
+
+//
+abstract class KeywordAnalyzer implements TextAnalyzer {
+
+
+  abstract protected String[] getKeywords();
+
+  abstract protected Label getLabel();
+
+  @Override
+  public Label processText(String text) {
+    for (String keyword : getKeywords()) {
+      if (text.contains(keyword))
+        return getLabel();
+    }
+    return Label.OK;
+  }
+}
+
+class SpamAnalyzer extends KeywordAnalyzer {
+  private String[] keywords;
+  private Label label;
+  public SpamAnalyzer(String[] keywords) {
+    this.keywords = keywords.clone();
+    label = Label.SPAM;
+  }
+
+  @Override
+  protected String[] getKeywords() {
+    return keywords;
+  }
+
+  @Override
+  protected Label getLabel() {
+    return label;
+  }
+}
+
+class NegativeTextAnalyzer extends KeywordAnalyzer {
+  private String[] keywords;
+  private Label label;
+  public NegativeTextAnalyzer() {
+    this.keywords = new String[3];
+    this.keywords[0] = ":(";
+    this.keywords[1] = "=(";
+    this.keywords[2] = ":|";
+    label = Label.NEGATIVE_TEXT;
+  }
+
+  @Override
+  protected String[] getKeywords() {
+    return keywords;
+  }
+
+  @Override
+  protected Label getLabel() {
+    return label;
+  }
+
+}
+
+class TooLongTextAnalyzer implements TextAnalyzer {
+  private int maxLength;
+
+  public TooLongTextAnalyzer(int maxLength) {
+    this.maxLength = maxLength;
+  }
+
+  @Override
+  public Label processText(String text) {
+    if (text.length() > maxLength)
+      return Label.TOO_LONG;
+    return Label.OK;
+  }
+
+}
+
+public Label checkLabels(TextAnalyzer[] analyzers, String text) {
+   for(TextAnalyzer analyzer: analyzers) {
+        if(analyzer.processText(text) != Label.OK) return analyzer.processText(text);
+   }
+    return Label.OK;
+}

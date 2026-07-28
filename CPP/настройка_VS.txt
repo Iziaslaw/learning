@@ -1,0 +1,34 @@
+Настройка Visual Studio Code
+>> gcc.gnu.org  >> DOWNLOAD/Binares >> install MinGW
+>> mingw-get-setup.exe
+
+MinGW installation manager
+- mingw32-gcc-bin
+- mingw32-gcc-g++-bin
+- mingw32-make-bin
+- mingw32-gdb-bin
+
+<Installation> Apply Changes >> Apply >> Ok
+
+Система >> Дополнительные параметры среды >> Переменные среды
+Системные переменные >> Path (LMB doubleClick) add "C:\mingw\bin"
+
+Win+R >> cmd >> OK
+>>gcc >> (gcc: fatal error: no input files)
+
+== INSTALL Visual Studio Code
+
+create "file.c"
+Ctrl+~ >> gcc file.c //скопилируется файл a.exe
+
+== EXTENTIONS
+
+- "c lange" C/C++ IntelliSense, debugging... Chose "Run and Debug" >> "C++(GDB/LLDB)"
+- "code runner"
+
+== Standart C99
+>> tasks.json >> "args":[ "-std=c99", ... ]   Перекомпиляция Ctrl+Shift+B
+>> File->Preferences->Settings   "code runner run in terminal" \/
+-||-            "run code configuration" "code-runner:Executor Map" 
+Settings  >> "c": "cd $dir && gcc -std=c99
+          >> "code-runner.runInTerminal": false, 
