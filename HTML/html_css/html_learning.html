@@ -9,6 +9,40 @@
 		}
 		em {color:red;}
 		* {font-family: "Courier New";}
+		.blocks {
+		display: flex;
+		justify-content: space-between;
+		}
+
+		.block {
+		width: 100px;
+		height: 100px;
+		background: blue;
+		border: 1px solid white;
+		}
+		button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fff;
+  background: #2799d6;
+  box-shadow: 0 4px 8px 0 rgba(39, 153, 214, 0.65);
+  cursor: pointer;
+  transition: border-radius 0.5s ease-in;
+}
+
+button:hover {
+  background: #7cc1e6;
+  box-shadow: 0 4px 16px 0 rgba(39, 153, 214, 0.85);
+  border-radius: 16px;
+}
+button:active {
+  background: red;
+  box-shadow: none;
+  color: green;
+  border-radius: 25px;
+}
 	</style>
 </head>
 <body>
@@ -216,7 +250,70 @@ overflow: auto; - полосы прокрутки добавляются тол�
     right  - выравнивание по правой стороне, обтекание слева,
     none - выравнивание не задаётся (нужно, чтобы сбросить ранее заданное значение).
 
-</i></pre>
+</i></pre></details>
+<details><summary>CSS flex</summary>
+<pre>
+.blocks {
+  display: flex;
+  justify-content: space-between;
+}
 
+.block {
+  width: 100px;
+  height: 100px;
+  background: blue;
+  border: 1px solid white;
+}
+</pre>
+<a href="https://tpverstak.ru/flex-cheatsheet/">Flex-cheatsheet</a>
+<div class="blocks">
+  <div class="block"></div><div class="block"></div>
+  <div class="block"></div><div class="block"></div> 
+</div></details>
+<details><summary>CSS Псевдоклассы</summary>
+<pre>
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fff;
+  background: #2799d6;
+  box-shadow: 0 4px 8px 0 rgba(39, 153, 214, 0.35);
+  cursor: pointer;
+}
+
+button:hover {
+  background: #7cc1e6;
+  box-shadow: 0 4px 16px 0 rgba(39, 153, 214, 0.25);
+}
+button:active {
+  background: red;
+  box-shadow: none;
+}
+:hover - появляется при наведении мышки
+:active - появляется при нажатии на элемент
+:focus - появляется при фокусировке на элементе (например, когда выбрано поле ввода текста)
+</pre>
+<div style="padding: 30px;">
+  <button>Красивая кнопка с тенью</button>
+</div>
+</details>
+<details><summary>CSS Animation</summary>
+<pre>
+button {
+    border-radius: 4px;
+    transition: border-radius 0.5s ease-in;
+}
+
+button:hover {
+    border-radius: 16px;
+}
+button:active {
+	border-radius: 25px;
+}
+</pre>
+<div style="padding: 30px; "><button>Button</button></div>
+</details>
 </body>
 </html>
