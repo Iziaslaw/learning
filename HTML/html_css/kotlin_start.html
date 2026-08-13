@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>HTML изучение</title>
+    <title>Kotlin_Start</title>
 	<style> 		
 		body {  background-color: #C7E3D5; }
 		* {font-family: 'Lucida Console', 'Consolas', 'Courier New';}
@@ -578,45 +578,567 @@ Set
 </pre>
 
 </details>
-<details><summary>---</summary><!-- Это комментарий на той же строке -->
+<details><summary>Функции+</summary><!-- Это комментарий на той же строке -->
 <pre>
+<b>vararg</b>
+Функция может принимать переменное количество параметров одного типа. Для определения таких параметров применяется ключевое слово vararg. Например, нам необходимо передать в функцию несколько строк, но сколько именно строк, мы точно не знаем. Их может быть пять, шесть, семь и т.д.:
 
+<i>	fun printStrings(vararg strings: String){ 
+		for(str in strings) 
+			println(str) 
+	} 
+	fun main() {  
+		printStrings("Beibut", "Azat", "Daniyar") 
+		printStrings("Hello", "I", "am", "Android", "Developer") 
+	} </i>
+                  
+Функция printStrings принимает неопределенное количество строк. В самой функции мы можем работать с массивом  и производить с ними некоторые действия.
+
+Другой пример - подсчет суммы неопределенного количества чисел:
+
+<i>	fun sum(vararg numbers: Int){ 
+		val result=numbers.sum() 
+		println("Сумма чисел равна $result") 
+	} 
+	fun main() { 
+		sum(1, 2, 3, 4, 5) 
+		sum(1, 2, 3, 4, 5, 6, 7, 8, 9) 
+	} </i>
+                  
+<b>Оператор *</b>
+Оператор * (spread operator) позволяет передать параметру в качестве значения элементы из массива
+
+<i>	fun sum(vararg numbers: Int) { 
+		val result = numbers.sum() 
+		println("Сумма чисел равна $result") 
+	} 
+
+	fun main() { 
+		val numbers = intArrayOf(1, 2, 3, 4, 5) 
+		sum(*numbers) 
+	}</i>
+<b>Default parameters</b>
+Рассмотрим следующую функцию:
+
+<i>	fun main() { 
+		displayUser("Tom", 23) 
+		displayUser("Alice", 19) 
+		displayUser("Kate", 25) 
+	}
+	fun displayUser(name: String, age: Int){ 
+		println("Name: $name   Age: $age") 
+	} </i>
+                  
+Функция displayUser() принимает два параметра - name и age. Однако мы можем определить какие-то параметры функции как необязательные и установить для них значения по умолчанию:
+
+<i>	fun displayUser(name: String, age: Int = 18, position: String="unemployed"){ 
+		println("Name: $name   Age: $age  Position: $position") 
+	} 
+ 
+	fun main() { 
+		displayUser("Tom", 23, "Manager") 
+		displayUser("Alice", 21) 
+		displayUser("Kate") 
+	} </i>
+                  
+В данном случае функция displayUser имеет три параметра для передачи имени, возраста и должности. Для первого параметр name значение по умолчанию не установлено, поэтому для него значение по-прежнему обязательно передавать значение.	
+<b>Named arguments</b>
+Возьмем в качестве примера следующую функцию:
+
+<i>	fun displayUser(name: String, surname: String, middleName: String sex: String, nationality: String){
+		println("Name: $name, Surname: $surname, Middle Name: $middleName, Sex: $sex, Nationality: 	$nationality")
+	} </i>
+                  
+Функция имеет множество параметров,  вызов которой будет иметь следующий вид:
+
+<i>	displayUser("Иван", "Иванов", "Иванович", "Мужский", "Казах")</i>
+                  
+ При чтении этой строки не совсем понятен контекст, то есть, за что именно отвечает каждый из параметров. В среде разработки есть возможность выводить подсказки в виде имени аргумента:
+
+Однако, есть и другой вариант - использовать именованных параметров (name arguments):
+
+<i>	displayUser(name = "Иван", surname = "Иванов", middleName = "Иванович", sex = "Мужский", nationality = "Казах") </i>
 </pre>
 
 </details>
-<details><summary>---</summary><!-- Это комментарий на той же строке -->
+<details><summary>Функции высокого порядка</summary><!-- Это комментарий на той же строке -->
 <pre>
+<h3>High Order Functions</h3>
+Функции высокого порядка (high order functions) - это функции, которые либо принимают функцию в качестве параметра, либо возвращают функцию, либо и то, и другое.
 
+Функция как параметр функции
+В Kotlin функция может принимать другую функцию в качестве аргумента. Чтобы функция могла принимать другую функцию через параметр, этот параметр должен представлять тип функции:
+
+<i>	fun main() {
+		displayMessage(::morning)
+		displayMessage(::evening)
+	}
+	fun displayMessage(mes: () -> Unit){
+		mes()
+	}
+	fun morning(){
+		println("Good Morning")
+	}
+	fun evening(){
+		println("Good Evening")
+	}</i>
+                  
+В данном случае функция displayMessage() через параметр mes принимает функцию типа () -> Unit, то есть такую функцию, которая не имеет параметров и ничего не возвращает.
+
+<i>	fun displayMessage(mes: () -> Unit)</i>
+
+При вызове этой функции мы можем передать этому параметру функцию, которая соответствует этому типу:
+
+<i>	displayMessage(::morning) </i>
+
+Оператор :: в данном примере позволяет передавать фукцию morning() как аргумент-функция для displayMessage.
+
+Рассмотрим пример параметра-функции, которая принимает параметры:
+
+<i>	fun main() {
+		action(5, 3, ::sum)         // 8
+		action(5, 3, ::multiply)    // 15
+		action(5, 3, ::subtract)    // 2
+	}
+	fun action (n1: Int, n2: Int, op: (Int, Int)-> Int){
+		val result = op(n1, n2)
+		println(result)
+	}
+	fun sum(a: Int, b: Int): Int{
+		return a + b
+	}
+	fun subtract(a: Int, b: Int): Int{
+		return a - b
+	}
+	fun multiply(a: Int, b: Int): Int{
+		return a * b
+	} </i>
+                  
+Здесь функция action принимает три параметра. Первые два параметра - значения типа Int. А третий параметр представляет функцию, которая имеет тип (Int, Int)-> Int, то есть принимает два числа и возвращает некоторое число.
+
+В самой функции action вызываем эту параметр-функцию, передавая ей два числа, и полученный результат выводим на консоль.
+
+При вызове функции action мы можем передать для ее третьего параметра конкретную функцию, которая соответствует этому параметру по типу:
+
+<i>	action(5, 3, ::sum)         // 8 
+	action(5, 3, ::multiply)    // 15 
+	action(5, 3, ::subtract)    // 2 </i>
+                  
+Функция как возвращаемый результат функции 
+Для того, чтобы функция возвращала результат, необходимо сделать ее return type () -> Unit . В данном случае она вернет функцию, которая не принимает параметров, а также возвращает пустоту. Можно изменять структуру возвращаемой функции как нам удобно:
+
+<i>	fun getFunction1() : (Int) -> Unit { return {}} 
+	fun getFunction2() : (Int, Double) -> Unit {return {_,_ -> Unit}} 
+	fun getFunction3() : (Int, Double) -> Long {return {_, _ -> Long.MAX_VALUE}} </i>
+                  
+На самом деле такие конструкции сложно читаются и воспринимаются, однако, используются при редких случаях. 
+
+В примере ниже создается функция, которая возвращает другую функцию, а метод invoke() запускает функцию, которая вернулась из getHelloFunction
+
+<i>	fun main(args: Array&lt;String>) { 
+		getHelloFunction().invoke() 
+	} 
+
+	fun helloFunction() { 
+		println("Hello") 
+	} 
+
+	fun getHelloFunction(): () -> Unit { 
+		return ::helloFunction 
+	} </i>
 </pre>
 
 </details>
-<details><summary>---</summary><!-- Это комментарий на той же строке -->
+<details><summary>Задачи</summary><!-- Это комментарий на той же строке -->
 <pre>
+<b>Квадраты чисел</b>
+<i>	val scan = java.util.Scanner(System.`in`)
+	fun main(args: Array&lt;String>){
+		val n = scan.nextInt()
+		for(i in 1..n){println(i*i);}
+	}</i>
+<b>Факториал числа</b>
+<i>	val scan = java.util.Scanner(System.`in`)
+	fun main(args: Array&lt;String>){
+		val n = scan.nextInt()
+		var res = 1
+    //Пишите ваш код здесь
+		for(i in 1..n){
+			res *= i
+		}
+		println(res)
+	}</i>
+<b>Сумма простых чисел</b>
+<i>	val scan = java.util.Scanner(System.`in`)
+	fun main(args: Array&lt;String>){
+		val n = scan.nextInt()
 
+		var result = 0
+		for (i in 2..n) {
+			if (isPrime(i)) {
+				result += i
+			}
+		}
+		println(result)
+	}
+
+	fun isPrime(n: Int): Boolean {
+		if (n &lt; 2) return false
+		if (n == 2) return true
+		if (n % 2 == 0) return false
+		for (i in 3..Math.sqrt(n.toDouble()).toInt() step 2) {
+			if (n % i == 0) return false
+		}
+		return true
+	} </i>	
+<b>Сумма двух массивов</b>
+<i>	val scan = java.util.Scanner(System.`in`)
+	fun main(args: Array&lt;String>){
+		val n = scan.nextInt()
+		var arr1 = IntArray(n) { scan.nextInt() }
+		var arr2 = IntArray(n) { scan.nextInt() }
+		for (i in 0..n-1) println(arr1[i] + arr2[i]) 
+	}</i>	
 </pre>
 
 </details>
-<details><summary>---</summary><!-- Это комментарий на той же строке -->
+<details><summary>Классы</summary><!-- Это комментарий на той же строке -->
 <pre>
+<i>	class Jusan { 
+		// Тело класса
+	}
 
+	class Jusan</i>
+<b>Конструкторы</b>	
+<i>	class Jusan constructor(firstName: String) {
+		// Тело класса
+	}</i>
+Если у основного конструктора нет аннотаций и модификаторов видимости, ключевое слово <b>constructor</b> может быть опущено.
+
+<i>	class Jusan(firstName: String) { /*...*/ }</i>
+                  
+Основной конструктор не может содержать в себе исполняемого кода. Инициализирующий код может быть помещён в соответствующие блоки (initializers blocks), которые помечаются словом <b>init</b>.
+
+При создании экземпляра класса блоки инициализации выполняются в том порядке, в котором они идут в теле класса, чередуясь с инициализацией свойств.
+
+<i>	class InitOrderDemo(name: String) {
+		val firstProperty = "Первое свойство: $name".also(::println)
+    
+		init {
+			println("Первый блок инициализации: ${name}")
+		}
+    
+		val secondProperty = "Второе свойство: ${name.length}".also(::println)
+    
+		init {
+			println("Второй блок инициализации: ${name.length}")
+		}
+	}</i>
+                  
+Обратите внимание, что параметры основного конструктора могут быть использованы в инициализирующем блоке. Они также могут быть использованы при инициализации свойств в теле класса.
+
+<i>	class Jusan(name: String) {
+		val customerKey = name.uppercase()
+	}</i>
+                  
+Для объявления и инициализации свойств основного конструктора в Kotlin есть лаконичное синтаксическое решение:
+
+<i>	class Jusan(val firstName: String, val lastName: String, var age: Int)</i>
+                  
+Такие объявления также могут включать в себя значения свойств класса по умолчанию.
+
+<i>	class Jusan(val firstName: String, val lastName: String, var isEmployed: Boolean = true)</i>
+                  
+Вы можете использовать завершающую запятую при объявлении свойств класса.
+
+<i>	class Jusan(
+		val firstName: String,
+		val lastName: String,
+		var age: Int, // завершающая запятая
+	) { /*...*/ }</i>
+                  
+Свойства, объявленные в основном конструкторе, могут быть изменяемые (<b>var</b>) и неизменяемые (<b>val</b>).
+
+Если у конструктора есть аннотации или модификаторы видимости, ключевое слово <b>constructor</b> обязательно, и модификаторы используются перед ним.
+
+<i>	class Jusan public @Inject constructor(name: String) { /*...*/ }	</i>
+<b>Дополнительные конструкторы</b>
+В классах также могут быть объявлены дополнительные конструкторы (secondary constructors), перед которыми используется ключевое слово <b>constructor</b>.
+
+<i>class Person(val pets: MutableList&lt;Pet> = mutableListOf())
+class Pet {
+    constructor(owner: Person) {
+        owner.pets.add(this) // добавляет выбранного питомца в список домашних животных своего владельца
+    }
+}</i>
+
+                  
+Если у класса есть основной конструктор, каждый дополнительный конструктор должен прямо или косвенно ссылаться (через другой(ие) конструктор(ы)) на основной. Осуществляется это при помощи ключевого слова <b>this</b>.
+
+<i>class Person(val name: String) {
+    val children: MutableList&lt;Person> = mutableListOf()
+    constructor(name: String, parent: Person) : this(name) {
+        parent.children.add(this)
+    }
+}</i>
+                  
+Обратите внимание, что код в блоках инициализации фактически становится частью основного конструктора. Дополнительный конструктор ссылается на основной при помощи своего первого оператора, поэтому код во всех блоках инициализации, а также инициализация свойств выполняется перед выполнением кода в теле дополнительного конструктора.
+
+Даже если у класса нет основного конструктора на него все равно происходит неявная ссылка и блоки инициализации выполняются также.
+
+<i>class Constructors {
+    init {
+        println("Блок инициализации")
+    }
+    constructor(i: Int) {
+        println("Constructor $i")
+    }
+}</i>
+                  
+Если в абстрактном классе не объявлено никаких конструкторов (основного или дополнительных), у этого класса автоматически сгенерируется пустой конструктор без параметров. Видимость этого конструктора будет public.
+
+Если вы не желаете иметь класс с открытым public конструктором, вам необходимо объявить пустой конструктор с соответствующим модификатором видимости.
+
+<i>class DontCreateMe private constructor () { /*...*/ }</i>
+<b>Создание экземпляров классов</b>
+Для создания экземпляра класса конструктор вызывается так, как если бы он был обычной функцией.
+
+<i>	val invoice = Invoice()
+
+	val customer = Customer("Петр Ян")</i>
 </pre>
 
 </details>
-<details><summary>---</summary><!-- Это комментарий на той же строке -->
+<details><summary>Объекты</summary><!-- Это комментарий на той же строке -->
 <pre>
+<b>Объекты (object)</b>
+Создаются один раз в области памяти (instance ) и повтороном обращении или создани еще одного объекта, то отдается уже созданный объект. 
 
+Например: 
+
+<i>object MyObject {
+    var age = 10;
+}
+
+//Создаем экземпляры
+val a = MyObject
+a.age = 12 //меняем параметр
+
+val b = MyObject
+println(b) // будет 12</i>
+                  
+Анонимные объекты и объявление объектов
+Иногда нам необходимо получить экземпляр некоторого класса с незначительной модификацией, желательно без написания нового подкласса. Kotlin справляется с этим с помощью объявления объектов и анонимных объектов.
+
+<b>Анонимные объекты (ориг.: Object expressions)</b>
+Объекты анонимных классов, т.е. классов, которые явно не объявлены с помощью <b>class</b>, полезны для одноразового использования. Вы можете объявить их с нуля, наследовать от существующих классов или реализовать интерфейсы. Экземпляры анонимных классов также могут называться анонимными объектами, потому что они объявляются выражением, а не именем.
+
+Создание анонимных объектов с нуля
+Анонимный объект начинается с ключевого слова <b>object</b>.
+
+Если вам просто нужен объект, у которого нет нетривиальных супертипов, перечислите его члены в фигурных скобках после <b>object</b>.
+
+<i>val helloWorld = object {
+    val hello = "Hello"
+    val world = "World!"
+    // тип анонимных объектов - Any, поэтому `override` необходим в `toString()`
+    override fun toString() = "$hello, $world"
+}</i>
+<b>Наследование анонимных объектов от супертипов</b>
+Для того, чтобы создать объект анонимного класса, который наследуется от какого-то типа (типов), укажите этот тип после <b>object</b> и двоеточия (<b>:</b>). Затем реализуйте или переопределите члены этого класса, как если бы вы наследовали от него.
+
+<i>	window.addMouseListener(object : MouseAdapter() {
+		override fun mouseClicked(e: MouseEvent) { /*...*/ }
+
+		override fun mouseEntered(e: MouseEvent) { /*...*/ }
+	})</i>
+
+                  
+Если у супертипа есть конструктор, то в него должны быть переданы соответствующие параметры. Множество супертипов может быть указано после двоеточия в виде списка, заполненного через запятую.
+
+<i>	open class A(x: Int) {
+		public open val y: Int = x
+	}
+
+	interface B { /*...*/ }
+
+	val ab: A = object : A(1), B {
+		override val y = 15
+	}</i>
+<b>Использование анонимных объектов в качестве возвращаемых типов значений</b>
+Когда анонимный объект используется в качестве типа local или private, но не встроенного объявления (функции или свойства), все его члены доступны через эту функцию или свойство.
+
+<i>class C {
+    private fun getObject() = object {
+        val x: String = "x"
+    }
+
+    fun printX() {
+        println(getObject().x)
+    }
+}</i>
+                  
+Если эта функция или свойство маркированы как встроенные и public или private одновременно, то их тип:
+
+Any, если анонимный объект не имеет объявленного супертипа;
+Объявленный супертип анонимного объекта, если существует ровно один такой тип;
+Явно объявленный тип, если существует более одного объявленного супертипа.
+Во всех этих случаях члены, добавленные в анонимный объект, недоступны. Переопределенные члены доступны, если они объявлены в фактическом типе функции или свойства.
+
+<i>interface A {
+    fun funFromA() {}
+}
+interface B
+
+class C {
+    // Возвращаемый тип Any. x недоступен
+    fun getObject() = object {
+        val x: String = "x"
+    }
+
+    // Возвращаемый тип A; x недоступен
+    fun getObjectA() = object: A {
+        override fun funFromA() {}
+        val x: String = "x"
+    }
+
+    // Возвращаемый тип B; funFromA() и x недоступны
+    fun getObjectB(): B = object: A, B { // требуется явный тип возвращаемого значения
+        override fun funFromA() {}
+        val x: String = "x"
+    }
+}</i>	
+<b>Доступ к переменным из анонимных объектов</b>
+Код внутри объявленного объекта может обращаться к переменным из окружающей области видимости.
+
+<i>fun countClicks(window: JComponent) {
+    var clickCount = 0
+    var enterCount = 0
+
+    window.addMouseListener(object : MouseAdapter() {
+        override fun mouseClicked(e: MouseEvent) {
+            clickCount++
+        }
+
+        override fun mouseEntered(e: MouseEvent) {
+            enterCount++
+        }
+    })
+}</i>
 </pre>
 
 </details>
-<details><summary>---</summary><!-- Это комментарий на той же строке -->
+<details><summary>Интерфейсы</summary><!-- Это комментарий на той же строке -->
 <pre>
+<b>Интерфейсы</b>
+Интерфейсы в Kotlin могут содержать объявления абстрактных методов, а также методы с реализацией. Главное отличие интерфейсов от абстрактных классов заключается в невозможности хранения переменных экземпляров. Они могут иметь свойства, но те должны быть либо абстрактными, либо предоставлять реализацию методов доступа.
 
+Интерфейс определяется ключевым словом interface.
+
+<i>interface MyInterface {
+    fun bar()
+    fun foo() {
+      // тело можно не писать
+    }
+}
+Реализация интерфейсов
+Класс или объект могут реализовать любое количество интерфейсов.
+
+class Child : MyInterface {
+    override fun bar() {
+        // должны реализовать тело
+    }
+}</i>
+<b>Свойства в интерфейсах</b>
+Вы можете объявлять свойства в интерфейсах. Свойство, объявленное в интерфейсе, может быть либо абстрактным, либо иметь свою реализацию методов доступа. Свойства в интерфейсах не могут иметь теневых полей, соответственно, методы доступа к таким свойствам не могут обращаться к теневым полям.
+
+<i>interface MyInterface {
+    val prop: Int // абстрактное свойство
+
+    val propertyWithImplementation: String
+        get() = "brr"
+
+    fun foo() {
+        print(prop)
+    }
+}
+
+class Child : MyInterface {
+    override val prop: Int = 22
+}</i>
+<b>Наследование интерфейсов</b>
+Интерфейс может быть производным от других интерфейсов, что означает, что он может как предоставлять реализации для их членов, так и объявлять новые функции и свойства. Вполне естественно, что классы, реализующие такой интерфейс, требуются только для определения отсутствующих реализаций.
+
+<i>interface Named {
+    val name: String
+}
+
+interface Person : Named {
+    val firstName: String
+    val lastName: String
+    
+    override val name: String get() = "$firstName $lastName"
+}
+
+data class Employee(
+    // реализация 'name' не требуется
+    override val firstName: String,
+    override val lastName: String,
+    val position: Position
+) : Person</i>
+<b>Устранение противоречий при переопределении</b>
+Когда мы объявлем большое количество типов в списке нашего супертипа, может так выйти, что мы допустим более одной реализации одного и того же метода.
+
+<i>interface A {
+    fun foo() { print("A") }
+    fun bar()
+}
+
+interface B {
+    fun foo() { print("B") }
+    fun bar() { print("bar") }
+}
+
+class C : A {
+    override fun bar() { print("bar") }
+}
+
+class D : A, B {
+    override fun foo() {
+        super&lt;A>.foo()
+        super&lt;B>.foo()
+    }
+    
+    override fun bar() {
+        super&lt;B>.bar()
+    }
+}</i>
+
+                  
+Оба интерфейса A и B объявляют функции foo() и bar(). Оба реализуют foo(), но только B содержит реализацию bar() (bar() не отмечен как абстрактный метод в интерфейсе A, потому что в интерфейсах это подразумевается по умолчанию, если у функции нет тела). Теперь, если вы унаследуете какой-нибудь класс C от интерфейса A, вам, очевидно, придётся переопределять метод bar(), обеспечивая его реализацию.
+
+Однако если вы унаследуете класс D от интерфейсов A и B, вам надо будет переопределять все методы, которые вы унаследовали от этих интерфейсов, и вам нужно указать, как именно D должен их реализовать. Это правило касается как тех методов, у которых имеется только одна реализация (bar()), так и тех, у которых есть несколько реализаций (foo()).
 </pre>
 
 </details>
-<details><summary>---</summary><!-- Это комментарий на той же строке -->
+<details><summary>Задачи</summary><!-- Это комментарий на той же строке -->
 <pre>
 
+<i>class Triangle(
+    val side1: Double,
+    val side2: Double,
+    val side3: Double
+) {
+    fun calculatePerimeter(): Double {
+        return side1 + side2 + side3
+    }
+}
+
+fun main() {
+    val triangle = Triangle(5.0, 6.0, 7.0)
+    val perimeter = triangle.calculatePerimeter()
+    print("Triangle Perimeter: $perimeter")
+}</i>
 </pre>
 
 </details>

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>HTML изучение</title>
 	<style> 
+		body {  background-color: #F9CA86; }
 		#button-go-to-top {
  		text-decoration: underline; /* подчёркивание текста */
 		}
-		em {color:red;}
+		i {background: #2e3440; color: #d8dee9;}
+		em {color:red; background: #fdf6e3; color: #586e75;}
 		* {font-family: "Courier New";}
 		.blocks {
 		display: flex;
@@ -43,6 +45,36 @@ button:active {
   color: green;
   border-radius: 25px;
 }
+/*@media*/
+.block2 {
+  margin: 8px 0;
+  padding: 32px;
+  box-sizing: border-box;
+  color: #fff;
+  font: 32px sans-serif;
+  text-align: center;
+  background: #777;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.c1,
+.c2,
+.c6 {
+  padding: 0 8px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media screen and (min-width: 992px){
+  .c2 {width: 50%;}
+  .c1 {width: 33.3%; }}
+@media screen and (min-width: 1200px){
+  .c2 {width: 33.3%;}
+  .c1 {width: 16.6%; }}
 	</style>
 </head>
 <body>
@@ -314,6 +346,48 @@ button:active {
 }
 </pre>
 <div style="padding: 30px; "><button>Button</button></div>
+</details>
+<details><summary>CSS @media</summary>
+<pre>
+Синтаксис медиа-запроса выглядит так:
+
+﻿<i>@media правило {
+   /* ﻿обычный CSS-код, который применится при соблюдении правила */
+}</i>
+
+                  
+﻿Пример медиа-запроса:
+
+<i>@media screen and (max-width: 320px) {
+    img {
+        width: 100%;
+    }
+}</i>
+</pre>
+<div class="layout">
+  <div class="c6"><div class="block2">6</div></div>
+  <div class="c2"><div class="block2">2</div></div>
+  <div class="c2"><div class="block2">2</div></div>
+  <div class="c2"><div class="block2">2</div></div>
+  <div class="c1"><div class="block2">1</div></div>
+  <div class="c1"><div class="block2">1</div></div>
+  <div class="c1"><div class="block2">1</div></div>
+  <div class="c1"><div class="block2">1</div></div>
+  <div class="c1"><div class="block2">1</div></div>
+  <div class="c1"><div class="block2">1</div></div>
+</div>
+</details>
+<details><summary>---</summary>
+<pre>
+
+</pre>
+
+</details>
+<details><summary>---</summary>
+<pre>
+
+</pre>
+
 </details>
 </body>
 </html>

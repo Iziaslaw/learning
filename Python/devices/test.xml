@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+
+<device name="IK11" caption="ИК-11" id="6" build="11">
+    <ram>
+        <item name="dID" type="unsigned int" caption="Ид контр "/>
+		<item name="ExtCmd" caption="Внеш команда" type="unsigned char">
+            <mode value="1" caption="Вкл"/>
+            <mode value="2" caption="Выкл"/>
+            <mode value="85" caption="Перезапуск"/>
+        </item>
+	</ram>
+	<EPROM address="8192">
+        <item name="deviceDefault" caption="Если == 0xFF -> восстановление EPROM по умолчанию" type="unsigned char"/>
+		<item name="ShowMask" type="unsigned long">
+            <mask value="0x00000001" caption="Показывать на индикаторе концентрацию CO"/>
+            <mask value="0x00000002" caption="Показывать на индикаторе концентрацию NO"/>
+            <mask value="0x00000004" caption="Показывать на индикаторе концентрацию O2"/>
+            <mask value="0x00000008" caption="Показывать на индикаторе вычисленную концентрацию NOx"/>
+		</item>	
+	</EPROM>
+	<EPROM_ADC>
+		<item name="Len_sens" caption="Длина" type="unsigned char"/>
+	</EPROM_ADC>
+</device>	

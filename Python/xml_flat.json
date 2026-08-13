@@ -1,0 +1,145 @@
+[
+  {
+    "path": "device",
+    "tag": "device",
+    "attributes": {
+      "name": "IK11",
+      "caption": "ИК-11",
+      "id": "6",
+      "build": "11"
+    },
+    "text": null
+  },
+  {
+    "path": "device/ram",
+    "tag": "ram",
+    "attributes": {},
+    "text": null
+  },
+  {
+    "path": "device/ram/item",
+    "tag": "item",
+    "attributes": {
+      "name": "dID",
+      "type": "unsigned int",
+      "caption": "Ид контр "
+    },
+    "text": null
+  },
+  {
+    "path": "device/ram/item",
+    "tag": "item",
+    "attributes": {
+      "name": "ExtCmd",
+      "caption": "Внеш команда",
+      "type": "unsigned char"
+    },
+    "text": null
+  },
+  {
+    "path": "device/ram/item/mode",
+    "tag": "mode",
+    "attributes": {
+      "value": "1",
+      "caption": "Вкл"
+    },
+    "text": null
+  },
+  {
+    "path": "device/ram/item/mode",
+    "tag": "mode",
+    "attributes": {
+      "value": "2",
+      "caption": "Выкл"
+    },
+    "text": null
+  },
+  {
+    "path": "device/ram/item/mode",
+    "tag": "mode",
+    "attributes": {
+      "value": "85",
+      "caption": "Перезапуск"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM",
+    "tag": "EPROM",
+    "attributes": {
+      "address": "8192"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM/item",
+    "tag": "item",
+    "attributes": {
+      "name": "deviceDefault",
+      "caption": "Если == 0xFF -> восстановление EPROM по умолчанию",
+      "type": "unsigned char"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM/item",
+    "tag": "item",
+    "attributes": {
+      "name": "ShowMask",
+      "type": "unsigned long"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM/item/mask",
+    "tag": "mask",
+    "attributes": {
+      "value": "0x00000001",
+      "caption": "Показывать на индикаторе концентрацию CO"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM/item/mask",
+    "tag": "mask",
+    "attributes": {
+      "value": "0x00000002",
+      "caption": "Показывать на индикаторе концентрацию NO"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM/item/mask",
+    "tag": "mask",
+    "attributes": {
+      "value": "0x00000004",
+      "caption": "Показывать на индикаторе концентрацию O2"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM/item/mask",
+    "tag": "mask",
+    "attributes": {
+      "value": "0x00000008",
+      "caption": "Показывать на индикаторе вычисленную концентрацию NOx"
+    },
+    "text": null
+  },
+  {
+    "path": "device/EPROM_ADC",
+    "tag": "EPROM_ADC",
+    "attributes": {},
+    "text": null
+  },
+  {
+    "path": "device/EPROM_ADC/item",
+    "tag": "item",
+    "attributes": {
+      "name": "Len_sens",
+      "caption": "Длина",
+      "type": "unsigned char"
+    },
+    "text": null
+  }
+]
