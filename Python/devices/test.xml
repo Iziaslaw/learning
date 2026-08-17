@@ -1,25 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-
+<?xml version='1.0' encoding='utf-8'?>
 <device name="IK11" caption="ИК-11" id="6" build="11">
     <ram>
-        <item name="dID" type="unsigned int" caption="Ид контр "/>
-		<item name="ExtCmd" caption="Внеш команда" type="unsigned char">
-            <mode value="1" caption="Вкл"/>
-            <mode value="2" caption="Выкл"/>
-            <mode value="85" caption="Перезапуск"/>
+        <item name="dID" type="unsigned int" caption="Ид контр "  />
+		<item name="ExtCmd" caption="Внеш команда" type="unsigned char" >
+            <mode value="1" caption="Вкл" />
+            <mode value="2" caption="Выкл" />
+            <mode value="85" caption="Перезапуск" />
         </item>
+		<item name="Ch1" caption="Номер канала 1" type="signed char"/>
+        <item name="Code_AD7192[4]" caption="Усредненные коды, без chTbox7192" type="unsigned int"/>
+        <item name="Signal_AD7192[4]" caption="Сигналы (Вольт для газа, мА для тока), без chTbox7192" type="float"/>
+		
 	</ram>
 	<EPROM address="8192">
-        <item name="deviceDefault" caption="Если == 0xFF -> восстановление EPROM по умолчанию" type="unsigned char"/>
-		<item name="ShowMask" type="unsigned long">
-            <mask value="0x00000001" caption="Показывать на индикаторе концентрацию CO"/>
-            <mask value="0x00000002" caption="Показывать на индикаторе концентрацию NO"/>
-            <mask value="0x00000004" caption="Показывать на индикаторе концентрацию O2"/>
-            <mask value="0x00000008" caption="Показывать на индикаторе вычисленную концентрацию NOx"/>
+		<item name="Ch2" caption="Номер канала 2" type="float"/>
+        <item name="deviceDefault" caption="Если == 0xFF -&gt; восстановление EPROM по умолчанию" type="unsigned char" />
+		<item name="ShowMask" type="unsigned long" >
+            <mask value="0x00000001" caption="Показывать на индикаторе концентрацию CO" />
+            <mask value="0x00000002" caption="Показывать на индикаторе концентрацию NO" />
+            <mask value="0x00000004" caption="Показывать на индикаторе концентрацию O2" />
+            <mask value="0x00000008" caption="Показывать на индикаторе вычисленную концентрацию NOx" />
 		</item>	
 	</EPROM>
 	<EPROM_ADC>
-		<item name="Len_sens" caption="Длина" type="unsigned char"/>
+		<item name="Len_sens" caption="Длина" type="unsigned char" />
+		<item name="Ch3" caption="Номер канала 3" type="float"/>
 	</EPROM_ADC>
-</device>	
+</device>
